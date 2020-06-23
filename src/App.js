@@ -4,7 +4,6 @@ import {
   DataSearch,
   MultiList,
   RangeSlider,
-  SingleRange,
   SelectedFilters,
   ResultCard,
   ReactiveList

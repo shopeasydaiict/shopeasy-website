@@ -6,12 +6,37 @@ import {
   RangeSlider,
   SelectedFilters,
   ResultCard,
-  ReactiveList
+  ReactiveList,
 } from "@appbaseio/reactivesearch";
 import "./App.css";
 import { css } from "emotion";
+import Login from "./Login";
+import fire from "./config/fire";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {},
+      isLogin: false,
+    };
+    this.logout = this.logout.bind(this);
+  }
+  logout() {
+    fire.auth().signOut();
+  }
+  componentDidMount() {
+    this.authLister();
+  }
+  authLister() {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user: user, isLogin: true });
+      } else this.setState({ user: null, isLogin: false });
+    });
+  }
+
+  handleLogin = () => {};
   render() {
     return (
       <ReactiveBase
@@ -20,25 +45,33 @@ class App extends Component {
       >
         <div className="navbar">
           <div className="logo">SHOPEASY DAIICT </div>
+
           <DataSearch
             className="datasearch"
             componentId="mainSearch"
-            dataField={
-              [
-              "product_name",
-              "product_name.search",
-            ]}
-            fieldWeights = {[5,1,3,1]}
+            dataField={["product_name", "product_name.search"]}
+            fieldWeights={[5, 1, 3, 1]}
             queryFormat="and"
             placeholder="Search for a product or category"
             innerClass={{
               input: "searchbox",
-              list: "suggestionlist"
+              list: "suggestionlist",
             }}
             autosuggest={false}
             iconPosition="left"
             filterLabel="search"
           />
+          <div className="Login_back">
+            {this.state.user ? (
+              <div className="Logout_button" onClick={this.logout}>
+                Logout
+              </div>
+            ) : (
+              <a className="Login_anchor" href="/Login">
+                <div className="Login_button">Login</div>
+              </a>
+            )}
+          </div>
         </div>
         <div className={"display"}>
           <div className={"leftSidebar"}>
@@ -49,15 +82,15 @@ class App extends Component {
               filterLabel="prices"
               range={{
                 start: 0,
-                end: 5000
+                end: 5000,
               }}
               rangeLabels={{
                 start: "\u20B9 0",
-                end: 	"\u20B9 5000"
+                end: "\u20B9 5000",
               }}
               interval={2}
             />
-              <MultiList
+            <MultiList
               componentId="Categories"
               dataField="type"
               class="filter"
@@ -71,8 +104,6 @@ class App extends Component {
               title="Select Source"
               selectAllLabel="All Sources"
             />
-
-
           </div>
           <div className={"mainBar"}>
             <SelectedFilters />
@@ -81,10 +112,10 @@ class App extends Component {
               dataField={["product_name", "product_name.search"]}
               size={8}
               pagination
-              innerClass= {{
-                poweredBy : css({
+              innerClass={{
+                poweredBy: css({
                   display: "none !important",
-                })
+                }),
               }}
               react={{
                 and: [
@@ -92,36 +123,34 @@ class App extends Component {
                   // "ratingsFilter",
                   "priceFilter",
                   "Source",
-                  "Categories"
-                ]
+                  "Categories",
+                ],
               }}
               render={({ data }) => (
                 <ReactiveList.ResultCardsWrapper>
-                  {data.map(item => (
+                  {data.map((item) => (
                     <ResultCard key={item.id} href={item.url}>
-                    <ResultCard.Image src={item.image} />
-                    <ResultCard.Title>
-                      <div
-                        className="product-title"
-                        dangerouslySetInnerHTML={{
-                          __html: item.product_name,
-                        }}
-                      />
-                    </ResultCard.Title>
-
+                      <ResultCard.Image src={item.image} />
+                      <ResultCard.Title>
+                        <div
+                          className="product-title"
+                          dangerouslySetInnerHTML={{
+                            __html: item.product_name,
+                          }}
+                        />
+                      </ResultCard.Title>
 
                       <ResultCard.Description>
-                    <div className="flex column justify-space-between">
-                      <div>
-                        <div>
+                        <div className="flex column justify-space-between">
+                          <div>
+                            <div></div>
+                            <div className="ratings-list flex align-center">
+                              <span className="price">Rs {item.price}</span>
+                            </div>
+                          </div>
+                          <span className="source">Website: {item.source}</span>
                         </div>
-                        <div className="ratings-list flex align-center">
-                          <span className="price">Rs {item.price}</span>
-                        </div>
-                      </div>
-                      <span className="source">Website: {item.source}</span>
-                    </div>
-                  </ResultCard.Description>
+                      </ResultCard.Description>
                     </ResultCard>
                   ))}
                 </ReactiveList.ResultCardsWrapper>

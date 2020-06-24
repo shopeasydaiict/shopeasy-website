@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #232F3E;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-areas:"logo form";
+    align-content: center;
+    padding: 10em 10em 30em;
+    margin: 0;
+}
+
+.form-container {
+    background-color: none;
+    text-align: left;
+}
+
+.email-lable {
+    margin: 1em 0;
+    color: white;
+    font-size: 1em;
+}
+
+.email-box {
+    border: none;
+    border-radius: .5em;
+    display: block;
+    padding: .8em;
+    width: 100%;
+    margin: 0 0 3em;
+    background-color: #C4C4C4;
+}
+.email-box:focus {
+    background-color: white;
+}
+.pass-box {
+    border: none;
+    border-radius: .5em;
+    display: block;
+    padding: .8em;
+    width: 100%;
+    margin: 0 0 3em;
+    background-color: #C4C4C4;
+}
+.pass-box:focus {
+    background-color: white;
+}
+.pass-lable {
+    margin: 1em 0;
+    color: white;
+    font-size: 1em;
+}
+
+.bt-login {
+    border-radius: .5em;
+    cursor: pointer;
+    border: none;
+    padding: .8em;
+    width: 10em;
+    background-color: #FEBD69;
+    font-weight: bold;
+}
+
+.bt-login:hover {
+    background-color: #ce8322;
+}
+.bt-signup {
+    border-radius: .5em;
+    cursor: pointer;
+    border: none;
+    padding: .8em;
+    width: 10em;
+    margin: 2em;
+    background-color: #FEBD69;
+    font-weight: bold;
+}
+.bt-signup:hover {
+    background-color: #ce8322;    
+}
+a {
+    width: 50%;
+    margin: 5em 4em;
+}
+img {
+    width: 60%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 800px) {
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #232F3E;
+        display: grid;
+        grid-template-columns: 150% 0;
+        grid-template-areas:"logo form";
+        width: 150%;
+        margin: -5em -0 0 -8em;
+    }
+    a {
+        grid-column: 1 / 1;
+        width: 70%;
+        margin: 0 3em;
+    }
+    .form-container {
+        grid-column: 1 / 1;   
+        width: 100%;
+    }
+    .bt-signup {
+        margin: 2em 5em 0;
+        display: block;
+    }
+    .bt-login {
+        margin: 2em 5em 0;
+    }
+}

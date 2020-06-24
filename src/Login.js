@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./login.css";
 import fire from "./config/fire";
+import { Link } from "react-router-dom";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -95,13 +97,13 @@ class Login extends Component {
   render() {
     return (
       <div className="body">
-        <a href="https://www.google.co.ins/">
+        <Link to="/">
           <img
             border=""
             alt="ShopEasy"
             src={require("./resources/shopeasy_logo.png")}
           ></img>
-        </a>
+        </Link>
         <form className="form-container">
           <h2 className="email-lable">E-MAIL:</h2>
           <input

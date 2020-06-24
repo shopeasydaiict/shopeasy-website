@@ -10,8 +10,9 @@ import {
 } from "@appbaseio/reactivesearch";
 import "./App.css";
 import { css } from "emotion";
-import Login from "./Login";
+// import Login from "./Login";
 import fire from "./config/fire";
+import { Link } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -36,7 +37,6 @@ class App extends Component {
     });
   }
 
-  handleLogin = () => {};
   render() {
     return (
       <ReactiveBase
@@ -45,7 +45,6 @@ class App extends Component {
       >
         <div className="navbar">
           <div className="logo">SHOPEASY DAIICT </div>
-
           <DataSearch
             className="datasearch"
             componentId="mainSearch"
@@ -61,15 +60,15 @@ class App extends Component {
             iconPosition="left"
             filterLabel="search"
           />
-          <div className="Login_back">
+          <div>
             {this.state.user ? (
-              <div className="Logout_button" onClick={this.logout}>
+              <button className="bt-login home-login" onClick={this.logout}>
                 Logout
-              </div>
+              </button>
             ) : (
-              <a className="Login_anchor" href="/Login">
-                <div className="Login_button">Login</div>
-              </a>
+              <Link to="/Login">
+                <button className="bt-login home-login">LOGIN / SIGNUP</button>
+              </Link>
             )}
           </div>
         </div>
@@ -158,6 +157,7 @@ class App extends Component {
             />
           </div>
         </div>
+        <div> {console.log(this.state.isLogin)}</div>
       </ReactiveBase>
     );
   }

@@ -15,8 +15,8 @@ class App extends Component {
   render() {
     return (
       <ReactiveBase
-      app="shopeasy-sen"
-      credentials="85Ptps7rc:5a1b8ef2-9b83-4195-bfcf-b7a5052ef728"
+        app="shopeasy-sen"
+        credentials="85Ptps7rc:5a1b8ef2-9b83-4195-bfcf-b7a5052ef728"
       >
         <div className="navbar">
           <div className="logo">SHOPEASY DAIICT </div>
@@ -27,8 +27,6 @@ class App extends Component {
               [
               "product_name",
               "product_name.search",
-              "category",
-              "category.search",
             ]}
             fieldWeights = {[5,1,3,1]}
             queryFormat="and"
@@ -80,7 +78,7 @@ class App extends Component {
             <SelectedFilters />
             <ReactiveList
               componentId="SearchResult"
-              dataField={["product_name","product_name.search"]}
+              dataField={["product_name", "product_name.search"]}
               size={8}
               pagination
               innerClass= {{

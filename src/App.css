@@ -88,6 +88,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .home-login {
   margin-right: 0.5em;
+}
+
+.wish-list {
+  width: inherit;
 }

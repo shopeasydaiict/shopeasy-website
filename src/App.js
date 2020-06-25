@@ -23,18 +23,40 @@ class App extends Component {
     };
     this.logout = this.logout.bind(this);
   }
+
   logout() {
     fire.auth().signOut();
   }
+
   componentDidMount() {
     this.authLister();
   }
+
   authLister() {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user: user, isLogin: true });
       } else this.setState({ user: null, isLogin: false });
     });
+  }
+
+  addToWishList(e,item) {
+    e.preventDefault();
+    console.log("user id: " + fire.auth().currentUser.uid)
+    var user_id = fire.auth().currentUser.uid
+    fire
+      .firestore()
+      .collection('users')
+      .doc(user_id)
+      .collection('wishlist')
+      .add({
+       name: item.product_name,
+       image_url: item.image,
+       source : item.source,
+       price : item.price,
+       product_url : item.url
+    })
+
   }
 
   render() {
@@ -62,16 +84,23 @@ class App extends Component {
           />
           <div>
             {this.state.user ? (
-              <button className="bt-login home-login" onClick={this.logout}>
-                Logout
-              </button>
+              <Link to="/Wishlist">
+              <button className="bt-login home-login">WISHLIST</button>
+            </Link>
+
+            ) :null}
+
+            {this.state.user ? (
+                <button className="bt-login home-login" onClick={this.logout}>
+                  LOGOUT
+                </button>
             ) : (
               <Link to="/Login">
                 <button className="bt-login home-login">LOGIN / SIGNUP</button>
               </Link>
             )}
             <Link to="Contact">
-              <button className="bt-login home-login">CONTACT US :</button>
+              <button className="bt-login home-login">CONTACT US</button>
             </Link>
           </div>
         </div>
@@ -145,12 +174,14 @@ class App extends Component {
                       <ResultCard.Description>
                         <div className="flex column justify-space-between">
                           <div>
-                            <div></div>
                             <div className="ratings-list flex align-center">
                               <span className="price">Rs {item.price}</span>
                             </div>
                           </div>
                           <span className="source">Website: {item.source}</span>
+                          {this.state.user ? (
+                              <button className="bt-login home-login" onClick={e => this.addToWishList(e,item)}>+  WISHLIST</button>
+                          ) : null}
                         </div>
                       </ResultCard.Description>
                     </ResultCard>

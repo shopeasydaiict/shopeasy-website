@@ -4,6 +4,7 @@ import fire from "./config/fire";
 import { Link } from "react-router-dom";
 
 class Login extends Component {
+
   constructor(props) {
     super(props);
     this.login = this.login.bind(this);
@@ -14,6 +15,7 @@ class Login extends Component {
       password: "",
     };
   }
+
   validatePassword(password) {
     // Do not show anything when the length of password is zero.
     if (password.length <= 7) {
@@ -52,6 +54,7 @@ class Login extends Component {
     if (strength === "Strong") return true;
     else return false;
   }
+
   login(e) {
     if (e) e.preventDefault();
 
@@ -67,11 +70,13 @@ class Login extends Component {
         alert("Invalid Email or Password");
       });
   }
+
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
+
   signup(e) {
     e.preventDefault();
     var validate = this.validatePassword(this.state.password);

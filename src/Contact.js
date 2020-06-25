@@ -26,6 +26,14 @@ class Contact extends Component {
         Query: this.state.query,
       });
   }
+  /*
+  fire
+      .firestore()
+      .collection("WishList")
+      .add(user)
+
+  */
+
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
@@ -34,7 +42,7 @@ class Contact extends Component {
 
   render() {
     return (
-      <div ClassName="contact-body">
+      <div className="contact-body">
         <Link to="/">
           <img
             alt="ShopEasy"
@@ -44,7 +52,7 @@ class Contact extends Component {
         </Link>
         <div className="crest">
           <div className="cform-container">
-            <h1 Classname="contact-h1">Drop us a line</h1>
+            <h1 classname="contact-h1">Drop us a line</h1>
             <form onSubmit={this.sendtofire}>
               <label for="name">Name</label>
               <input

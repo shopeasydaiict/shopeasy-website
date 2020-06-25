@@ -70,6 +70,9 @@ class App extends Component {
                 <button className="bt-login home-login">LOGIN / SIGNUP</button>
               </Link>
             )}
+            <Link to="Contact">
+              <button className="bt-login home-login">CONTACT US :</button>
+            </Link>
           </div>
         </div>
         <div className={"display"}>

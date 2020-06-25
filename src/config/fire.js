@@ -1,5 +1,4 @@
 import firebase from "firebase";
-
 var firebaseConfig = {
   apiKey: "AIzaSyCIQfoAOeBVvxz9ndXjKN-KG2npDUJ3d_U",
   authDomain: "shopeasy-48ef1.firebaseapp.com",

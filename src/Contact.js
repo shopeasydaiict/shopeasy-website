@@ -25,6 +25,12 @@ class Contact extends Component {
         Name: this.state.name,
         Query: this.state.query,
       });
+    this.setState({
+      email: "",
+      name: "",
+      query: "",
+    });
+    alert("Thank You for submitting ! \nYour Response has been recorded.");
   }
   /*
   fire
@@ -43,7 +49,6 @@ class Contact extends Component {
   render() {
     return (
       <div className="contact-body">
-
         <div class="ctop">
           <Link to="/">
             <img
@@ -53,14 +58,14 @@ class Contact extends Component {
             ></img>
           </Link>
           <Link to="http://sengroup5daiict@gmail.com/">
-              <h3>sengroup5daiict@gmail.com</h3>
+            <h3>sengroup5daiict@gmail.com</h3>
           </Link>
         </div>
 
         <div className="crest">
           <div className="cform-container">
             <h1 classname="contact-h1">Drop us a line</h1>
-            <form onSubmit={this.sendtofire}>
+            <form id="contact-us-form" onSubmit={this.sendtofire}>
               <label for="name">Name</label>
               <input
                 type="text"
@@ -94,14 +99,11 @@ class Contact extends Component {
                 value={this.state.query}
                 required
               ></textarea>
+
               <input type="submit" value="Submit" />
             </form>
           </div>
-          <img
-            src={require("./resources/test.png")}
-            alt=""
-            class="cill"
-          ></img>
+          <img src={require("./resources/test.png")} alt="" class="cill"></img>
         </div>
       </div>
     );

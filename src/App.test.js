@@ -1,6 +1,7 @@
 import React from 'react';
 import App from './App';
-import fire from "./config/fire";
+import Login from './Login';
+
 //test('renders learn react link', () => {
 //  const { getByText } = render(<App />);
 //  const linkElement = getByText(/learn react/i);
@@ -8,12 +9,6 @@ import fire from "./config/fire";
 //});
 
 import { shallow, mount } from 'enzyme';
-import Login from './Login';
-
-/*test('sign in with correct password',() => {
-    login('hunnybalani26@gmail.com', 'Chotumotu@17');
-    expect('isLogin').toBe(true);
-});*/
 
 describe('Test case for testing Password',() =>{
 test('Valid password',() =>{
@@ -62,50 +57,30 @@ it('Invalid password with empty string',() =>{
 describe('Test case for testing login',() =>{
 let wrapper;
 let wrapper2;
-test('username check',()=>{
-wrapper = shallow(<Login/>);
-wrapper.find('input[type="email"]').simulate('change', {target: {name: 'email', value: 'hunnybalani26@gmail.com'}});
-expect(wrapper.state('email')).toEqual('hunnybalani26@gmail.com');
+test('e-mail check',()=>{
+    wrapper = shallow(<Login/>);
+    wrapper.find('input[type="email"]').simulate('change', {target: {name: 'email', value: 'hunnybalani26@gmail.com'}});
+    expect(wrapper.state('email')).toEqual('hunnybalani26@gmail.com');
 })
 it('password check',()=>{
-wrapper = shallow(<Login/>);
-wrapper.find('input[type="password"]').simulate('change', {target: {name: 'password', value: 'Chotumotu@17'}});
-expect(wrapper.state('password')).toEqual('Chotumotu@17');
-})
-it('input only email and no password',()=>{
-wrapper = shallow(<Login/>);
-wrapper.find('input[type="email"]').simulate('change', {target: {name: 'email', value: 'hunnybalani26@gmail.com'}});
-wrapper.find('input[type="password"]').simulate('change', {target: {name: 'password', value: ''}});
-wrapper.find('button').at(0).simulate('click');
-expect(wrapper2.state('isLogin')).toBe(false);
+    wrapper = shallow(<Login/>);
+    wrapper.find('input[type="password"]').simulate('change', {target: {name: 'password', value: 'Chotumotu@17'}});
+    expect(wrapper.state('password')).toEqual('Chotumotu@17');
 })
 it('login check with right data',()=>{
-wrapper = shallow(<Login/>);
-wrapper.find('input[type="email"]').simulate('change', {target: {name: 'email', value: 'hunnybalani26@gmail.com'}});
-wrapper.find('input[type="password"]').simulate('change', {target: {name: 'password', value: 'Chotumotu@17'}});
-wrapper.find('button').at(0).simulate('click');
-/*const sleep = (milliseconds) => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds))
-  }
-while(wrapper2.state('isLogin')!=true)
-    sleep(1000);*/
-wrapper2= shallow(<App/>);
-expect(wrapper2.state('isLogin')).toBe(true);
-})
-it('login check with right data2',()=>{
-    wrapper = mount(<Login/>);
+    wrapper = shallow(<Login/>);
     wrapper.find('input[type="email"]').simulate('change', {target: {name: 'email', value: 'hunnybalani26@gmail.com'}});
     wrapper.find('input[type="password"]').simulate('change', {target: {name: 'password', value: 'Chotumotu@17'}});
     wrapper.find('button').at(0).simulate('click');
-    wrapper2= mount(<App/>);
-    expect(wrapper2.instance().onAuthStateCHanged('user')).toBe(true);
-    })
+    wrapper2= shallow(<App/>);
+    expect(wrapper2.state('user')).toBeTruthy();
+})
 it('login check with wrong data',()=>{
-wrapper = shallow(<Login/>);
-wrapper2= shallow(<App/>);
-wrapper.find('input[type="email"]').simulate('change', {target: {name: 'email', value: 'hunnybalani26@gmail.com'}});
-wrapper.find('input[type="password"]').simulate('change', {target: {name: 'password', value: 'Chotumotu@09'}});
-wrapper.find('button').at(0).simulate('click');
-expect(wrapper2.state('isLogin')).toBe(false);
+    wrapper = shallow(<Login/>);
+    wrapper2= shallow(<App/>);
+    wrapper.find('input[type="email"]').simulate('change', {target: {name: 'email', value: 'hunnybalani26@gmail.com'}});
+    wrapper.find('input[type="password"]').simulate('change', {target: {name: 'password', value: 'Chotumotu@09'}});
+    wrapper.find('button').at(0).simulate('click');
+    expect(wrapper2.state('isLogin')).toBe(false);
 })
 })

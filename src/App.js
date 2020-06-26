@@ -62,7 +62,14 @@ class App extends Component {
           source: item.source,
           price: item.price,
           product_url: item.url,
-        });
+        }).then(function() {
+          console.log("Document successfully written!");
+          alert("Item successfully added to cart")
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+            alert("Some error occured")
+          });
       }
     });
   }

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   ReactiveBase,
   DataSearch,
@@ -10,9 +10,40 @@ import {
 } from "@appbaseio/reactivesearch";
 import "./App.css";
 import { css } from "emotion";
-// import Login from "./Login";
 import fire from "./config/fire";
-import { Link } from "react-router-dom";
+import Toast from "./Toast"
+import { Link } from "react-router-dom"
+import checkIcon from './resources/check.svg';
+import errorIcon from './resources/error.svg';
+import infoIcon from './resources/info.svg';
+import warningIcon from './resources/warning.svg';
+
+const TOAST_TYPE = [
+  {
+    id: 1,
+    type: 'success',
+    className: 'success',
+    label: 'Success'
+  },
+  {
+    id: 2,
+    type: 'danger',
+    className: 'danger',
+    label: 'Danger'
+  },
+  {
+    id: 3,
+    type: 'info',
+    className: 'info',
+    label: 'Info'
+  },
+  {
+    id: 4,
+    type: 'warning',
+    className: 'warning',
+    label: 'Warning'
+  },
+];
 
 class App extends Component {
   constructor(props) {
@@ -20,6 +51,7 @@ class App extends Component {
     this.state = {
       user: {},
       isLogin: false,
+      toastList : [],
     };
     this.logout = this.logout.bind(this);
   }
@@ -30,6 +62,64 @@ class App extends Component {
 
   componentDidMount() {
     this.authLister();
+  }
+
+
+
+  showToast(description,type) {
+    const id = Math.floor((Math.random() * 101) + 1);
+    var toastProperties = null
+
+    var toastListTemp = this.state.toastList
+
+    switch(type) {
+      case 'success':
+        toastProperties = {
+          id,
+          title: 'Success',
+          description: description,
+          backgroundColor: '#5cb85c',
+          icon: checkIcon
+        }
+        break;
+      case 'danger':
+        toastProperties = {
+          id,
+          title: 'Danger',
+          description: description,
+          backgroundColor: '#d9534f',
+          icon: errorIcon
+        }
+        break;
+      case 'info':
+        toastProperties = {
+          id,
+          title: 'Info',
+          description: description,
+          backgroundColor: '#5bc0de',
+          icon: infoIcon
+        }
+        break;
+      case 'warning':
+        toastProperties = {
+          id,
+          title: 'Warning',
+          description: description,
+          backgroundColor: '#f0ad4e',
+          icon: warningIcon
+        }
+        break;
+
+        default:
+          this.setState({
+            toastList : []
+          });
+    }
+    toastListTemp.push(toastProperties)
+
+    this.setState({
+      toastList : toastListTemp
+    });
   }
 
   authLister() {
@@ -54,7 +144,7 @@ class App extends Component {
 
     userRef.get().then((docSnapshot) => {
       if (docSnapshot.exists) {
-        alert("This element is already present in the wishlist");
+        this.showToast("This element is already present in the wishlist",'info');
       } else {
         userRef.set({
           name: item.product_name,
@@ -64,22 +154,21 @@ class App extends Component {
           product_url: item.url,
         }).then(function() {
           console.log("Document successfully written!");
-          alert("Item successfully added to cart")
-        })
+        },this.showToast("Item successfully added to cart","success"))
         .catch(function(error) {
             console.error("Error writing document: ", error);
-            alert("Some error occured")
-          });
+        });
       }
     });
   }
 
   render() {
     return (
-      <ReactiveBase
-        app="shopeasy-sen"
-        credentials="85Ptps7rc:5a1b8ef2-9b83-4195-bfcf-b7a5052ef728"
-      >
+      <div>
+          <ReactiveBase
+            app="shopeasy-sen"
+            credentials="85Ptps7rc:5a1b8ef2-9b83-4195-bfcf-b7a5052ef728"
+         >
         <div className="navbar">
           <div className="logo">SHOPEASY DAIICT </div>
           <DataSearch
@@ -133,7 +222,7 @@ class App extends Component {
                 start: "\u20B9 0",
                 end: "\u20B9 5000",
               }}
-              interval={2}
+              interval={50}
             />
             <MultiList
               componentId="Categories"
@@ -200,7 +289,10 @@ class App extends Component {
                             >
                               + WISHLIST
                             </button>
-                          ) : null}
+                          ) : <Link to="/Login">
+                            <button className="bt-login home-login">+ WISHLIST</button>
+                            </Link>
+                            }
                         </div>
                       </ResultCard.Description>
                     </ResultCard>
@@ -212,6 +304,15 @@ class App extends Component {
         </div>
         <div> {console.log(this.state.isLogin)}</div>
       </ReactiveBase>
+      <div> {console.log(this.state.toastList)}</div>
+
+      <Toast
+        toastList={this.state.toastList}
+        position="bottom-right"
+        autoDelete={true}
+        autoDeleteTime={10000000}
+      />
+    </div>
     );
   }
 }

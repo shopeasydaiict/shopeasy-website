@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-.body {
+.lbody {
   font-family: "Roboto", sans-serif;
   background-color: #232f3e;
   display: grid;
@@ -9,11 +9,6 @@
   align-content: center;
   padding: 10em 10em 30em;
   margin: 0;
-}
-
-.form-container {
-  background-color: none;
-  text-align: left;
 }
 
 .email-lable {
@@ -79,37 +74,35 @@
   background-color: #ce8322;
 }
 
-img {
-  width: 50%;
-  position: relative;
-  margin: 0;
-  padding: 0;
+.llogo {
+  width: 200px;
+  margin: 5em;
 }
 
-@media (max-width: 800px) {
-  body {
-    font-family: "Roboto", sans-serif;
-    background-color: #232f3e;
+@media (max-width: 1000px) {
+  .lbody {
     display: grid;
-    grid-template-columns: 150% 0;
+    grid-template-columns: 120% 0;
     grid-template-areas: "logo form";
-    width: 150%;
-    margin: -5em -0 0 -8em;
-  }
-  a {
-    grid-column: 1 / 1;
     width: 70%;
-    margin: 0 3em;
+    margin: -15em -0 0 -8em;
+  }
+  .llogo {
+    grid-column: 1 / 1;    
+    margin: 8em 0 0 8em;
+    width: 150px;
   }
   .form-container {
     grid-column: 1 / 1;
     width: 100%;
   }
   .bt-signup {
-    margin: 2em 5em 0;
+    margin: 2em 1em 0;
     display: block;
+    width: 100%;
   }
   .bt-login {
-    margin: 2em 5em 0;
+    margin: 2em 1em 0;
+    width: 100%;
   }
 }

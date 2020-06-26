@@ -40,7 +40,7 @@
 }
 .list{
     padding: .3em;
-    background-color: white;
+    background-color: #d4d4d4;
     margin: 0 8em;
     border-radius: .3em;
 }
@@ -49,15 +49,27 @@
     align-items: center;
     justify-content: space-between;
     padding: 1em;
+    margin-bottom: 1em;
+    background-color: white;
 }
 .product a{
     display: flex;
     align-items: center;
     text-decoration: none;
     color: black;
+
+    width: 100%;
 }
+.product-con{
+    display: flex;
+    justify-content: space-evenly;
+    width: 150px;
+    height: 150px;
+}
+
 .product-image{
-    width: 180px;
+    max-width: 150px;
+    max-height: 150px;
 }
 .details{
     text-align: left;
@@ -77,25 +89,35 @@
 }
 @media(max-width: 1000px){
     .list{
-        background-color: white;
+        background-color: #d4d4d4;
+        margin: 1em 2em 2em 2em;
     }
     .product a{
         display: flex;
         flex-direction: column;
+        margin-bottom: 1em;
+    }
+    .product button{
+        margin: 0;
     }
     .product{
         flex-direction: column;
     }
-    .list{
-        margin: 0;
-    }
-    .body{
-        padding: 0;
+    .wishlist-body{
+        padding: 1em;
     }
     .right{
         flex-direction: column;
     }
     .left{
-        padding-left: 1em;
+        display: block;
+    }
+    .left h1{
+        margin: 1em 0 0 0;
+    }
+    .top{
+        width: 100%;
+        padding: 1em 2em 1em 0;
+        align-items: flex-start;
     }
 }

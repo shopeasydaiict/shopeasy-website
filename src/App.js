@@ -18,33 +18,6 @@ import errorIcon from './resources/error.svg';
 import infoIcon from './resources/info.svg';
 import warningIcon from './resources/warning.svg';
 
-const TOAST_TYPE = [
-  {
-    id: 1,
-    type: 'success',
-    className: 'success',
-    label: 'Success'
-  },
-  {
-    id: 2,
-    type: 'danger',
-    className: 'danger',
-    label: 'Danger'
-  },
-  {
-    id: 3,
-    type: 'info',
-    className: 'info',
-    label: 'Info'
-  },
-  {
-    id: 4,
-    type: 'warning',
-    className: 'warning',
-    label: 'Warning'
-  },
-];
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -310,7 +283,6 @@ class App extends Component {
         toastList={this.state.toastList}
         position="bottom-right"
         autoDelete={true}
-        autoDeleteTime={10000000}
       />
     </div>
     );

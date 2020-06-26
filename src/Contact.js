@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import fire from "./config/fire";
 import "./contact.css";
 import { Link } from "react-router-dom";
+import Toast from "./Toast"
+import checkIcon from './resources/check.svg';
+import errorIcon from './resources/error.svg';
+import infoIcon from './resources/info.svg';
+import warningIcon from './resources/warning.svg';
+
 
 class Contact extends Component {
   constructor(props) {
@@ -12,7 +18,65 @@ class Contact extends Component {
       email: "",
       name: "",
       query: "",
+      toastList : []
     };
+  }
+
+
+  showToast(description,type) {
+    const id = Math.floor((Math.random() * 101) + 1);
+    var toastProperties = null
+
+    var toastListTemp = this.state.toastList
+
+    switch(type) {
+      case 'success':
+        toastProperties = {
+          id,
+          title: 'Success',
+          description: description,
+          backgroundColor: '#5cb85c',
+          icon: checkIcon
+        }
+        break;
+      case 'danger':
+        toastProperties = {
+          id,
+          title: 'Danger',
+          description: description,
+          backgroundColor: '#d9534f',
+          icon: errorIcon
+        }
+        break;
+      case 'info':
+        toastProperties = {
+          id,
+          title: 'Info',
+          description: description,
+          backgroundColor: '#5bc0de',
+          icon: infoIcon
+        }
+        break;
+      case 'warning':
+        toastProperties = {
+          id,
+          title: 'Warning',
+          description: description,
+          backgroundColor: '#f0ad4e',
+          icon: warningIcon
+        }
+        break;
+
+        default:
+          this.setState({
+            toastList : []
+          });
+    }
+    toastListTemp.push(toastProperties)
+
+    this.setState({
+      toastList : toastListTemp
+    });
   }
 
   sendtofire(e) {
@@ -25,6 +89,12 @@ class Contact extends Component {
         Name: this.state.name,
         Query: this.state.query,
       });
+    this.setState({
+      email: "",
+      name: "",
+      query: "",
+    });
+    this.showToast("Thank You for submitting!","success");
   }
   /*
   fire
@@ -43,17 +113,23 @@ class Contact extends Component {
   render() {
     return (
       <div className="contact-body">
-        <Link to="/">
-          <img
-            alt="ShopEasy"
-            src={require("./resources/shopeasy_logo.png")}
-            style={{ width: "6%", margin: "1%" }}
-          ></img>
-        </Link>
+        <div class="ctop">
+          <Link to="/">
+            <img
+              alt="ShopEasy"
+              className="clogo"
+              src={require("./resources/shopeasy_logo.png")}
+            ></img>
+          </Link>
+          <Link to="http://sengroup5daiict@gmail.com/">
+            <h3>sengroup5daiict@gmail.com</h3>
+          </Link>
+        </div>
+
         <div className="crest">
           <div className="cform-container">
             <h1 classname="contact-h1">Drop us a line</h1>
-            <form onSubmit={this.sendtofire}>
+            <form id="contact-us-form" onSubmit={this.sendtofire}>
               <label for="name">Name</label>
               <input
                 type="text"
@@ -87,15 +163,17 @@ class Contact extends Component {
                 value={this.state.query}
                 required
               ></textarea>
+
               <input type="submit" value="Submit" />
             </form>
           </div>
-          <img
-            src={require("./resources/contact_ai.png")}
-            alt=""
-            class="cill"
-          ></img>
+          <img src={require("./resources/test.png")} alt="" class="cill"></img>
         </div>
+        <Toast
+        toastList={this.state.toastList}
+        position="bottom-right"
+        autoDelete={true}
+      />
       </div>
     );
   }

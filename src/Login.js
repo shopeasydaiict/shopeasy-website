@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import "./login.css";
 import fire from "./config/fire";
 import { Link } from "react-router-dom";
+import Toast from "./Toast"
+import checkIcon from './resources/check.svg';
+import errorIcon from './resources/error.svg';
+import infoIcon from './resources/info.svg';
+import warningIcon from './resources/warning.svg';
 
 class Login extends Component {
 
@@ -13,7 +18,64 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      toastList: []
     };
+  }
+
+  showToast(description,type) {
+    const id = Math.floor((Math.random() * 101) + 1);
+    var toastProperties = null
+
+    var toastListTemp = this.state.toastList
+
+    switch(type) {
+      case 'success':
+        toastProperties = {
+          id,
+          title: 'Success',
+          description: description,
+          backgroundColor: '#5cb85c',
+          icon: checkIcon
+        }
+        break;
+      case 'danger':
+        toastProperties = {
+          id,
+          title: 'Danger',
+          description: description,
+          backgroundColor: '#d9534f',
+          icon: errorIcon
+        }
+        break;
+      case 'info':
+        toastProperties = {
+          id,
+          title: 'Info',
+          description: description,
+          backgroundColor: '#5bc0de',
+          icon: infoIcon
+        }
+        break;
+      case 'warning':
+        toastProperties = {
+          id,
+          title: 'Warning',
+          description: description,
+          backgroundColor: '#f0ad4e',
+          icon: warningIcon
+        }
+        break;
+
+        default:
+          this.setState({
+            toastList : []
+          });
+    }
+    toastListTemp.push(toastProperties)
+
+    this.setState({
+      toastList : toastListTemp
+    });
   }
 
   validatePassword(password) {
@@ -67,7 +129,7 @@ class Login extends Component {
       })
       .catch((err) => {
         console.log(err);
-        alert("Invalid Email or Password");
+        this.showToast("Invalid Email or Password","danger");
       });
   }
 
@@ -90,23 +152,23 @@ class Login extends Component {
         })
         .catch((err) => {
           console.log(err);
-          alert(err.message);
+          this.showToast(err.message,"danger");
         });
     } else {
       alert(
-        "Minimum password length required = 8 \nThe Password must contain atleast: \n- 1 Special Character \n- 1 Upper Case Alphabet \n- 1 Lower Case alphabet \n- 1 Number \n "
-      );
+        "Minimum password length required = 8 \nThe Password must contain atleast: \n- 1 Special Character \n- 1 Upper Case Alphabet \n- 1 Lower Case alphabet \n- 1 Number \n ");
     }
   }
 
   render() {
     return (
-      <div className="body">
-        <Link to="/">
+      <div class="lbody">
+        <Link to="/" className="llogo">
           <img
             border=""
             alt="ShopEasy"
             src={require("./resources/shopeasy_logo.png")}
+            style={{width:"100%"}}
           ></img>
         </Link>
         <form className="form-container">
@@ -137,6 +199,11 @@ class Login extends Component {
             SIGNUP
           </button>
         </form>
+        <Toast
+          toastList={this.state.toastList}
+          position="bottom-right"
+          autoDelete={true}
+      />
       </div>
     );
   }

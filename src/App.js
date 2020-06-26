@@ -40,23 +40,40 @@ class App extends Component {
     });
   }
 
-  addToWishList(e,item) {
+  addToWishList(e, item) {
     e.preventDefault();
-    console.log("user id: " + fire.auth().currentUser.uid)
-    var user_id = fire.auth().currentUser.uid
-    fire
+    console.log("user id: " + fire.auth().currentUser.uid);
+    var user_id = fire.auth().currentUser.uid;
+    var item_id = item._id;
+    var userRef = fire
       .firestore()
-      .collection('users')
+      .collection("users")
       .doc(user_id)
-      .collection('wishlist')
-      .add({
-       name: item.product_name,
-       image_url: item.image,
-       source : item.source,
-       price : item.price,
-       product_url : item.url
-    })
+      .collection("wishlist")
+      .doc(item_id);
 
+    userRef.get().then((docSnapshot) => {
+      if (docSnapshot.exists) {
+        alert("This item is already present in the wishlist");
+      } else {
+        userRef
+          .set({
+            name: item.product_name,
+            image_url: item.image,
+            source: item.source,
+            price: item.price,
+            product_url: item.url,
+          })
+          .then(function() {
+            console.log("Document successfully written!");
+            alert("Item successfully added to cart");
+          })
+          .catch(function(error) {
+            console.error("Error writing document: ", error);
+            alert("Some error occured");
+          });
+      }
+    });
   }
 
   render() {
@@ -85,15 +102,14 @@ class App extends Component {
           <div>
             {this.state.user ? (
               <Link to="/Wishlist">
-              <button className="bt-login home-login">WISHLIST</button>
-            </Link>
-
-            ) :null}
+                <button className="bt-login home-login">WISHLIST</button>
+              </Link>
+            ) : null}
 
             {this.state.user ? (
-                <button className="bt-login home-login" onClick={this.logout}>
-                  LOGOUT
-                </button>
+              <button className="bt-login home-login" onClick={this.logout}>
+                LOGOUT
+              </button>
             ) : (
               <Link to="/Login">
                 <button className="bt-login home-login">LOGIN / SIGNUP</button>
@@ -160,7 +176,7 @@ class App extends Component {
               render={({ data }) => (
                 <ReactiveList.ResultCardsWrapper>
                   {data.map((item) => (
-                    <ResultCard key={item.id} href={item.url}>
+                    <ResultCard key={item._id} href={item.url}>
                       <ResultCard.Image src={item.image} />
                       <ResultCard.Title>
                         <div
@@ -180,7 +196,12 @@ class App extends Component {
                           </div>
                           <span className="source">Website: {item.source}</span>
                           {this.state.user ? (
-                              <button className="bt-login home-login" onClick={e => this.addToWishList(e,item)}>+  WISHLIST</button>
+                            <button
+                              className="bt-login home-login"
+                              onClick={(e) => this.addToWishList(e, item)}
+                            >
+                              + WISHLIST
+                            </button>
                           ) : null}
                         </div>
                       </ResultCard.Description>

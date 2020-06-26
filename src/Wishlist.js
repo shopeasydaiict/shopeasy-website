@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import fire from "./config/fire";
 import "./wishlist.css";
 import { Link } from "react-router-dom";
-
+import App from "./App";
 class Wishlist extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +16,10 @@ class Wishlist extends Component {
   componentDidMount() {
     this.authLister();
     // this.getWishlist();
+  }
+
+  logout() {
+    fire.auth().signOut();
   }
 
   authLister() {
@@ -89,7 +93,11 @@ class Wishlist extends Component {
           </div>
           <div className="right">
             <h3>{this.state.user_email}</h3>
-            <button>logout</button>
+            <Link to="/">
+              <button onClick={this.logout} className="bt-login">
+                LOGOUT
+              </button>
+            </Link>
           </div>
         </div>
         <div className="list">
@@ -106,8 +114,8 @@ class Wishlist extends Component {
                 </div>
                 <div className="details">
                   <h2>{data.name}</h2>
-                  <p>{data.price}</p>
-                  <p>{data.source}</p>
+                  <p>Price : Rs. {data.price} </p>
+                  <p>Website : {data.source}</p>
                 </div>
               </a>
               <button>

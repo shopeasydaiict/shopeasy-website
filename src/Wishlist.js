@@ -81,7 +81,7 @@ class Wishlist extends Component {
               <img
                 alt="ShopEasy"
                 src={require("./resources/shopeasy_logo_xs.png")}
-                style={{ width: "20%", margin: "1%" }}
+                style={{ width: "100px", margin: "1%" }}
                 width="100px"
               />
             </a>
@@ -97,11 +97,13 @@ class Wishlist extends Component {
             <div className="product">
               <div> {console.log(data)}</div>
               <a href={data.product_url}>
-                <img
-                  src={data.image_url}
-                  alt="Image Unavailable"
-                  className="product-image"
-                />
+                <div className="product-con">
+                  <img
+                    src={data.image_url}
+                    alt="Image Unavailable"
+                    className="product-image"
+                  />
+                </div>
                 <div className="details">
                   <h2>{data.name}</h2>
                   <p>{data.price}</p>

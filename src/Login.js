@@ -101,12 +101,13 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="body">
-        <Link to="/">
+      <div class="lbody">
+        <Link to="/" className="llogo">
           <img
             border=""
             alt="ShopEasy"
             src={require("./resources/shopeasy_logo.png")}
+            style={{width:"100%"}}
           ></img>
         </Link>
         <form className="form-container">

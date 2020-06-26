@@ -43,13 +43,20 @@ class Contact extends Component {
   render() {
     return (
       <div className="contact-body">
-        <Link to="/">
-          <img
-            alt="ShopEasy"
-            src={require("./resources/shopeasy_logo.png")}
-            style={{ width: "6%", margin: "1%" }}
-          ></img>
-        </Link>
+
+        <div class="ctop">
+          <Link to="/">
+            <img
+              alt="ShopEasy"
+              className="clogo"
+              src={require("./resources/shopeasy_logo.png")}
+            ></img>
+          </Link>
+          <Link to="http://sengroup5daiict@gmail.com/">
+              <h3>sengroup5daiict@gmail.com</h3>
+          </Link>
+        </div>
+
         <div className="crest">
           <div className="cform-container">
             <h1 classname="contact-h1">Drop us a line</h1>
@@ -91,7 +98,7 @@ class Contact extends Component {
             </form>
           </div>
           <img
-            src={require("./resources/contact_ai.png")}
+            src={require("./resources/test.png")}
             alt=""
             class="cill"
           ></img>

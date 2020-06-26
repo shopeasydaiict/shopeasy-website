@@ -6,6 +6,20 @@
   background-color: #232f3e;
   color: white;
   padding: 2em;
+  height: 100vh;
+}
+.ctop {
+  display: flex;
+  align-items: center;
+}
+.ctop h3{
+  margin-left: 2em;
+  color: white;
+  decoration: none;
+}
+.clogo{
+  width: 120px;
+  height: 120px;
 }
 .cform-container {
   padding: 0 5em;
@@ -13,10 +27,11 @@
 }
 label {
   margin: 1em;
+  font-weight: bold;
 }
 .cform-container form input {
   display: block;
-  margin: 1em;
+  margin: 1em 1em 2em 1em;
   width: 90%;
   padding: 0.5em;
 }
@@ -68,30 +83,40 @@ textarea {
 }
 .cill {
   filter: drop-shadow(0 0 10px white);
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   margin: 6em;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .contact-body {
-    width: 180%;
+    margin: 0;
   }
   textarea {
     width: 90%;
   }
-  contact-h1 {
-    width: 150%;
-  }
+
   .cill {
     visibility: collapse;
+    margin: 0;
+    padding: 0;
+    width: 0;
   }
-
+  .clogo{
+    margin: 2em 0 1em 9em;
+  }
   .cform-container {
     padding: 0;
+    width: 100%;
   }
   .crest {
     padding: 0;
     margin: 0;
+  }
+  .cform-container form input {
+    width: 90%;
+  }
+  textarea{
+    width: 90%;
   }
 }

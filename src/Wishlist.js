@@ -48,9 +48,9 @@ class Wishlist extends Component {
     });
   }
 
-  refreshPage() {
-    window.location.reload(false);
-  }
+  // refreshPage() {
+  //   window.location.reload(false);
+  // }
 
   removeFromWishlist(e, doc_id) {
     e.preventDefault();

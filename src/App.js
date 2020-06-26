@@ -44,7 +44,7 @@ class App extends Component {
     e.preventDefault();
     console.log("user id: " + fire.auth().currentUser.uid);
     var user_id = fire.auth().currentUser.uid;
-    var item_id = item.id;
+    var item_id = item._id;
     var userRef = fire
       .firestore()
       .collection("users")
@@ -54,7 +54,7 @@ class App extends Component {
 
     userRef.get().then((docSnapshot) => {
       if (docSnapshot.exists) {
-        alert("This product is already present in the wishlist");
+        alert("This element is already present in the wishlist");
       } else {
         userRef.set({
           name: item.product_name,
@@ -167,7 +167,7 @@ class App extends Component {
               render={({ data }) => (
                 <ReactiveList.ResultCardsWrapper>
                   {data.map((item) => (
-                    <ResultCard key={item.id} href={item.url}>
+                    <ResultCard key={item._id} href={item.url}>
                       <ResultCard.Image src={item.image} />
                       <ResultCard.Title>
                         <div

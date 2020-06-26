@@ -45,7 +45,6 @@ class App extends Component {
     console.log("user id: " + fire.auth().currentUser.uid);
     var user_id = fire.auth().currentUser.uid;
     var item_id = item.id;
-    item_id = item_id.replace(/[&\/\\#,+()$~%.'":*?<>{}=-_]/g, "");
     var userRef = fire
       .firestore()
       .collection("users")

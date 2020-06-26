@@ -57,19 +57,19 @@
     align-items: center;
     text-decoration: none;
     color: black;
-    justify-content: space-between;
+
+    width: 100%;
 }
 .product-con{
-    /*
-    width: 80px;
-    height: 80px;
-    */
-    align-content: center;
+    display: flex;
+    justify-content: space-evenly;
+    width: 150px;
+    height: 150px;
 }
 
 .product-image{
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 150px;
+    max-height: 150px;
 }
 .details{
     text-align: left;

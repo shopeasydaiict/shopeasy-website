@@ -192,10 +192,10 @@ class Login extends Component {
             onChange={this.handleChange}
             value={this.state.password}
           />
-          <button onClick={this.login} className="bt-login">
+          <button onClick={this.login} className="btt-login">
             LOGIN
           </button>
-          <button onClick={this.signup} className="bt-signup">
+          <button onClick={this.signup} className="btt-signup">
             SIGNUP
           </button>
         </form>

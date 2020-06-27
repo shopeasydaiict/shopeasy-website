@@ -5,9 +5,9 @@
   margin: 0;
   /*background-color: #232f3e;*/
   background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
-  padding: 2em;
   height: 100vh;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+  padding: 2em 2em 7em 2em;
 }
 .ctop {
   display: flex;
@@ -23,12 +23,15 @@
   height: 120px;
 }
 .cform-container {
-  padding: 1em 2em;
-  width: 40%;
+  padding: 1em 2.5% 0 1.2%;
   background-color: white;
   border-radius: 1em;
   filter: drop-shadow(0 0 30px #c4c4c4);
   margin-bottom: 5em;
+}
+.cform-container h1 {
+  text-align: center;
+  margin: 0 0 .5em 0;
 }
 label {
   margin: 1em;
@@ -36,8 +39,8 @@ label {
 }
 .cform-container form input {
   display: block;
-  margin: 1em 1em 1em 1em;
-  width: 94%;
+  margin: 1em;
+  width: 93%;
   padding: .5em;
   font-size: 1em;
 }
@@ -46,7 +49,7 @@ label {
   color: white;
   width: 10em;
   padding: 0.8em;
-  margin: 4em 1em 2em;
+  margin: 1.5em 1em 0 1em;
   border: none;
   cursor: pointer;
   font-weight: bold;
@@ -80,24 +83,24 @@ textarea {
   display: block;
   margin: 1em;
   padding: 0.5em;
-  width: 94%;
+  width: 93%;
   border-radius: 1em;
   border: none;
   font-size: 1em;
 }
 .crest {
   display: flex;
-  margin: 2em 7em;
+  margin: 2em 7em 2em 10em;
   justify-content: space-between;
 }
 .cill {
   filter: drop-shadow(0 0 10px white);
   width: 500px;
   height: 500px;
-  margin: 3em 8em 6em 0;
+  margin: 3em 6em 6em 10em;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .contact-body {
     margin: 0;
     margin-top: -1.5em;

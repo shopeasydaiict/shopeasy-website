@@ -4,7 +4,9 @@
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 2em 4em;
-    background-color: #232F3E;
+    /*background-color: #232F3E;*/
+    background: #007bff;
+    background: linear-gradient(to right, #0062E6, #33AEFF);
 }
 .top{
     display: flex;
@@ -19,14 +21,18 @@
     width: 8em;
     border: none;
     border-radius: .5em;
-    color: black;
-    background-color: #FEBD69;
+    color: white;
+    font-weight: bold;
+    padding: .5em;
+    font-size: 1.3em;
+    /*background-color: #FEBD69;*/
+    background-color: #007bff;
     margin-left: 3em;
     cursor: pointer;
 }
 
 .top button:hover{
-    background-color: #e29229;
+    background-color: #0067d4;
 }
 .left{
     display: flex;
@@ -39,6 +45,7 @@
 }
 .right{
     display: flex;
+    align-items: center;
 }
 .list{
     padding: .3em;
@@ -85,7 +92,7 @@
     border-radius: .3em;
 }
 .product button:hover{
-    background-color: #888888;
+    background-color: #d66f6f;
 }
 .close{
     width: 60px;

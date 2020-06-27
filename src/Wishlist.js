@@ -146,7 +146,7 @@ class Wishlist extends Component {
                         <button
                               className="bt-wishlist"
                               onClick={(e) => this.removeFromWishlist(e, data.idd)}>
-                              Rem WISHLIST
+                              REMOVE FROM WISHLIST
                             </button>
 
                         </div>

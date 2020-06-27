@@ -100,40 +100,46 @@ class Wishlist extends Component {
             </Link>
           </div>
         </div>
-        <div className="list">
-          {this.state.wishlistData.map((data) => (
-            <div className="product">
-              <div> {console.log(data)}</div>
-              <a href={data.product_url}>
-                <div className="product-con">
-                  <img
-                    src={data.image_url}
-                    alt="Image Unavailable"
-                    className="product-image"
-                  />
-                </div>
-                <div className="details">
-                  <h2>{data.name}</h2>
-                  <p className="price">Price : Rs. {data.price} </p>
-                  <p className="source-website">
-                    <span>Website : </span>
-                    <span>{data.source}</span>
-                  </p>
-                </div>
-              </a>
-              <button>
-                <a rel="stylesheet" href="#">
-                  <img
-                    src={require("./resources/cross.png")}
-                    alt="Remove item"
-                    className="close"
-                    onClick={(e) => this.removeFromWishlist(e, data.id)}
-                  />
+        {this.state.wishlistData.length ? (
+          <div className="list">
+            {this.state.wishlistData.map((data) => (
+              <div className="product">
+                <div> {console.log(data)}</div>
+                <a href={data.product_url}>
+                  <div className="product-con">
+                    <img
+                      src={data.image_url}
+                      alt="Image Unavailable"
+                      className="product-image"
+                    />
+                  </div>
+                  <div className="details">
+                    <h2>{data.name}</h2>
+                    <p className="price">Price : Rs. {data.price} </p>
+                    <p className="source-website">
+                      <span>Website : </span>
+                      <span>{data.source}</span>
+                    </p>
+                  </div>
                 </a>
-              </button>
-            </div>
-          ))}
-        </div>
+                <button>
+                  <a rel="stylesheet" href="#">
+                    <img
+                      src={require("./resources/cross.png")}
+                      alt="Remove item"
+                      className="close"
+                      onClick={(e) => this.removeFromWishlist(e, data.id)}
+                    />
+                  </a>
+                </button>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <h1 className="wishlist-heading ">
+            Your Wishlist is empty right now !
+          </h1>
+        )}
       </div>
     );
   }

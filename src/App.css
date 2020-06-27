@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  border: white 2px solid;
+  /* border: white 2px solid; */
   z-index: 1;
   display: flex;
   align-items: center;

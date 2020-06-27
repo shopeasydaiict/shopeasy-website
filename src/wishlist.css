@@ -119,11 +119,19 @@
     .right{
         flex-direction: column;
     }
+    .right h3{
+        margin-bottom: 0;
+        margin-top: 2.2sem;
+    }
+    .right button{
+        font-size: 1em;
+    }
     .left{
         display: block;
     }
     .left h1{
-        margin: 1em 0 0 0;
+        /*margin: 1em 0 0 0;*/
+        margin: 0;
     }
     .top{
         width: 100%;

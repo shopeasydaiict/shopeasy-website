@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import MediaQuery from 'react-responsive'
+import MediaQuery from "react-responsive";
 import {
   ReactiveBase,
   DataSearch,
@@ -12,12 +12,12 @@ import {
 import "./App.css";
 import { css } from "emotion";
 import fire from "./config/fire";
-import Toast from "./Toast"
-import { Link } from "react-router-dom"
-import checkIcon from './resources/check.svg';
-import errorIcon from './resources/error.svg';
-import infoIcon from './resources/info.svg';
-import warningIcon from './resources/warning.svg';
+import Toast from "./Toast";
+import { Link } from "react-router-dom";
+import checkIcon from "./resources/check.svg";
+import errorIcon from "./resources/error.svg";
+import infoIcon from "./resources/info.svg";
+import warningIcon from "./resources/warning.svg";
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class App extends Component {
     this.state = {
       user: {},
       isLogin: false,
-      toastList : [],
+      toastList: [],
     };
     this.logout = this.logout.bind(this);
   }
@@ -38,61 +38,59 @@ class App extends Component {
     this.authLister();
   }
 
+  showToast(description, type) {
+    const id = Math.floor(Math.random() * 101 + 1);
+    var toastProperties = null;
 
+    var toastListTemp = this.state.toastList;
 
-  showToast(description,type) {
-    const id = Math.floor((Math.random() * 101) + 1);
-    var toastProperties = null
-
-    var toastListTemp = this.state.toastList
-
-    switch(type) {
-      case 'success':
+    switch (type) {
+      case "success":
         toastProperties = {
           id,
-          title: 'Success',
+          title: "Success",
           description: description,
-          backgroundColor: '#5cb85c',
-          icon: checkIcon
-        }
+          backgroundColor: "#5cb85c",
+          icon: checkIcon,
+        };
         break;
-      case 'danger':
+      case "danger":
         toastProperties = {
           id,
-          title: 'Danger',
+          title: "Danger",
           description: description,
-          backgroundColor: '#d9534f',
-          icon: errorIcon
-        }
+          backgroundColor: "#d9534f",
+          icon: errorIcon,
+        };
         break;
-      case 'info':
+      case "info":
         toastProperties = {
           id,
-          title: 'Info',
+          title: "Info",
           description: description,
-          backgroundColor: '#5bc0de',
-          icon: infoIcon
-        }
+          backgroundColor: "#5bc0de",
+          icon: infoIcon,
+        };
         break;
-      case 'warning':
+      case "warning":
         toastProperties = {
           id,
-          title: 'Warning',
+          title: "Warning",
           description: description,
-          backgroundColor: '#f0ad4e',
-          icon: warningIcon
-        }
+          backgroundColor: "#f0ad4e",
+          icon: warningIcon,
+        };
         break;
 
-        default:
-          this.setState({
-            toastList : []
-          });
+      default:
+        this.setState({
+          toastList: [],
+        });
     }
-    toastListTemp.push(toastProperties)
+    toastListTemp.push(toastProperties);
 
     this.setState({
-      toastList : toastListTemp
+      toastList: toastListTemp,
     });
   }
 
@@ -118,20 +116,25 @@ class App extends Component {
 
     userRef.get().then((docSnapshot) => {
       if (docSnapshot.exists) {
-        this.showToast("This element is already present in the wishlist",'info');
+        this.showToast(
+          "This element is already present in the wishlist",
+          "info"
+        );
       } else {
-        userRef.set({
-          name: item.product_name,
-          image_url: item.image,
-          source: item.source,
-          price: item.price,
-          product_url: item.url,
-        }).then(function() {
-          console.log("Document successfully written!");
-        },this.showToast("Item successfully added to wishlist","success"))
-        .catch(function(error) {
+        userRef
+          .set({
+            name: item.product_name,
+            image_url: item.image,
+            source: item.source,
+            price: item.price,
+            product_url: item.url,
+          })
+          .then(function() {
+            console.log("Document successfully written!");
+          }, this.showToast("Item successfully added to wishlist", "success"))
+          .catch(function(error) {
             console.error("Error writing document: ", error);
-        });
+          });
       }
     });
   }
@@ -139,202 +142,221 @@ class App extends Component {
   render() {
     return (
       <div>
-          <ReactiveBase
-            app="shopeasy-sen"
-            credentials="85Ptps7rc:5a1b8ef2-9b83-4195-bfcf-b7a5052ef728"
-         >
-        <div className="navbar">
+        <ReactiveBase
+          app="shopeasy-sen"
+          credentials="85Ptps7rc:5a1b8ef2-9b83-4195-bfcf-b7a5052ef728"
+        >
+          <div className="navbar">
+            <MediaQuery maxWidth={600}>
+              <div className="navbar-mobile">
+                <div className="navbar-mobile-column">
+                  <img
+                    className="logo-img-mobile"
+                    src={require("./resources/shopeasy_logo_xs.png")}
+                    alt="Shopeasy"
+                  />
+                  <div className="navbar-mobile-buttons">
+                    {this.state.user ? (
+                      <Link to="/Wishlist">
+                        <button className="bt-mobile home-login">
+                          WISHLIST
+                        </button>
+                      </Link>
+                    ) : null}
 
-          <MediaQuery maxWidth={600}>
-           <div className="navbar-mobile">
-             <div className="navbar-mobile-column">
-              <img className ="logo-img-mobile" src={require("./resources/shopeasy_logo_xs.png")} alt="Shopeasy"/>
-              <div className="navbar-mobile-buttons">
-                {this.state.user ? (
-                    <Link to="/Wishlist">
-                      <button className="bt-mobile home-login">WISHLIST</button>
+                    {this.state.user ? (
+                      <button
+                        className="bt-mobile home-login"
+                        onClick={this.logout}
+                      >
+                        LOGOUT
+                      </button>
+                    ) : (
+                      <Link to="/Login">
+                        <button className="bt-mobile home-login">
+                          LOGIN / SIGNUP
+                        </button>
+                      </Link>
+                    )}
+                    <Link to="Contact">
+                      <button className="bt-mobile home-login">
+                        CONTACT US
+                      </button>
                     </Link>
-                  ) : null}
-
-                  {this.state.user ? (
-                    <button className="bt-mobile home-login" onClick={this.logout}>
-                      LOGOUT
-                    </button>
-                  ) : (
-                    <Link to="/Login">
-                      <button className="bt-mobile home-login">LOGIN / SIGNUP</button>
-                    </Link>
-                  )}
-                  <Link to="Contact">
-                    <button className="bt-mobile home-login">CONTACT US</button>
-                  </Link>
+                  </div>
                 </div>
-            </div>
 
-            <DataSearch
+                <DataSearch
+                  className="datasearch"
+                  componentId="mainSearch"
+                  dataField={["product_name", "product_name.search"]}
+                  queryFormat="and"
+                  placeholder="Search for a product"
+                  innerClass={{
+                    input: "mobilebox",
+                    list: "suggestionlist",
+                  }}
+                  autosuggest={false}
+                  iconPosition="left"
+                  filterLabel="search"
+                />
+              </div>
+            </MediaQuery>
+
+            <MediaQuery minDeviceWidth={600}>
+              <img
+                src={require("./resources/shopeasy_logo.png")}
+                width="2%"
+                className="main-page-logo"
+              ></img>
+              <div className="logo">SHOPEASY</div>
+
+              <DataSearch
                 className="datasearch"
                 componentId="mainSearch"
                 dataField={["product_name", "product_name.search"]}
                 queryFormat="and"
-                placeholder="Search for a product"
+                placeholder="Search for a product or category"
                 innerClass={{
-                  input: "mobilebox",
+                  input: "searchbox",
                   list: "suggestionlist",
                 }}
                 autosuggest={false}
                 iconPosition="left"
                 filterLabel="search"
               />
-          </div>
 
-          </MediaQuery>
+              {this.state.user ? (
+                <Link to="/Wishlist">
+                  <button className="navbar-buttons">WISHLIST</button>
+                </Link>
+              ) : null}
 
-          <MediaQuery minDeviceWidth={600}>
-          <div className="logo">SHOPEASY DAIICT </div>
-          <DataSearch
-            className="datasearch"
-            componentId="mainSearch"
-            dataField={["product_name", "product_name.search"]}
-            queryFormat="and"
-            placeholder="Search for a product or category"
-            innerClass={{
-              input: "searchbox",
-              list: "suggestionlist",
-            }}
-            autosuggest={false}
-            iconPosition="left"
-            filterLabel="search"
-          />
-          <div>
-            {this.state.user ? (
-              <Link to="/Wishlist">
-                <button className="bt-login home-login">WISHLIST</button>
+              {this.state.user ? (
+                <button className="navbar-buttons" onClick={this.logout}>
+                  LOGOUT
+                </button>
+              ) : (
+                <Link to="/Login">
+                  <button className="navbar-buttons">LOGIN / SIGNUP</button>
+                </Link>
+              )}
+              <Link to="Contact">
+                <button className="navbar-buttons">CONTACT US</button>
               </Link>
-            ) : null}
-
-            {this.state.user ? (
-              <button className="bt-login home-login" onClick={this.logout}>
-                LOGOUT
-              </button>
-            ) : (
-              <Link to="/Login">
-                <button className="bt-login home-login">LOGIN / SIGNUP</button>
-              </Link>
-            )}
-            <Link to="Contact">
-              <button className="bt-login home-login">CONTACT US</button>
-            </Link>
+            </MediaQuery>
           </div>
+          <div className={"display"}>
+            <div className={"leftSidebar"}>
+              <RangeSlider
+                componentId="priceFilter"
+                dataField="price"
+                title="Price Range"
+                filterLabel="prices"
+                range={{
+                  start: 0,
+                  end: 5000,
+                }}
+                rangeLabels={{
+                  start: "\u20B9 0",
+                  end: "\u20B9 5000",
+                }}
+                interval={50}
+              />
+              <MultiList
+                componentId="Categories"
+                dataField="type"
+                class="filter"
+                title="Select Category"
+                selectAllLabel="All Category"
+              />
+              <MultiList
+                componentId="Source"
+                dataField="source"
+                class="filter"
+                title="Select Source"
+                selectAllLabel="All Sources"
+              />
+            </div>
+            <div className={"mainBar"}>
+              <SelectedFilters />
+              <ReactiveList
+                componentId="SearchResult"
+                dataField={["product_name", "product_name.search"]}
+                size={8}
+                pagination
+                innerClass={{
+                  poweredBy: css({
+                    display: "none !important",
+                  }),
+                }}
+                react={{
+                  and: [
+                    "mainSearch",
+                    // "ratingsFilter",
+                    "priceFilter",
+                    "Source",
+                    "Categories",
+                  ],
+                }}
+                render={({ data }) => (
+                  <ReactiveList.ResultCardsWrapper>
+                    {data.map((item) => (
+                      <ResultCard key={item._id} href={item.url}>
+                        <ResultCard.Image src={item.image} />
+                        <ResultCard.Title>
+                          <div
+                            className="product-title"
+                            dangerouslySetInnerHTML={{
+                              __html: item.product_name,
+                            }}
+                          />
+                        </ResultCard.Title>
 
-          </MediaQuery>
-
-
-        </div>
-        <div className={"display"}>
-          <div className={"leftSidebar"}>
-            <RangeSlider
-              componentId="priceFilter"
-              dataField="price"
-              title="Price Range"
-              filterLabel="prices"
-              range={{
-                start: 0,
-                end: 5000,
-              }}
-              rangeLabels={{
-                start: "\u20B9 0",
-                end: "\u20B9 5000",
-              }}
-              interval={50}
-            />
-            <MultiList
-              componentId="Categories"
-              dataField="type"
-              class="filter"
-              title="Select Category"
-              selectAllLabel="All Category"
-            />
-            <MultiList
-              componentId="Source"
-              dataField="source"
-              class="filter"
-              title="Select Source"
-              selectAllLabel="All Sources"
-            />
-          </div>
-          <div className={"mainBar"}>
-            <SelectedFilters />
-            <ReactiveList
-              componentId="SearchResult"
-              dataField={["product_name", "product_name.search"]}
-              size={8}
-              pagination
-              innerClass={{
-                poweredBy: css({
-                  display: "none !important",
-                }),
-              }}
-              react={{
-                and: [
-                  "mainSearch",
-                  // "ratingsFilter",
-                  "priceFilter",
-                  "Source",
-                  "Categories",
-                ],
-              }}
-              render={({ data }) => (
-                <ReactiveList.ResultCardsWrapper>
-                  {data.map((item) => (
-                    <ResultCard key={item._id} href={item.url}>
-                      <ResultCard.Image src={item.image} />
-                      <ResultCard.Title>
-                        <div
-                          className="product-title"
-                          dangerouslySetInnerHTML={{
-                            __html: item.product_name,
-                          }}
-                        />
-                      </ResultCard.Title>
-
-                      <ResultCard.Description>
-                        <div className="flex column justify-space-between">
+                        <ResultCard.Description>
+                          <div className="flex column justify-space-between">
                             <div className="ratings-list flex align-center">
                               <span className="price">Rs {item.price}</span>
                             </div>
-                          <span className="source">Website: {item.source}</span>
-                          <div className="add-to-wishlist">
-                          {this.state.user ? (
-                            <button
-                              className="bt-wishlist"
-                              onClick={(e) => this.addToWishList(e, item)}>
-                              ADD TO WISHLIST
-                            </button>
-                          ) : <Link to="/Login">
-                            <button className="bt-wishlist"> ADD TO WISHLIST</button>
-                            </Link>
-                            }
-                        </div>
+                            <span className="source">
+                              Website: {item.source}
+                            </span>
+                            <div className="add-to-wishlist">
+                              {this.state.user ? (
+                                <button
+                                  className="bt-wishlist"
+                                  onClick={(e) => this.addToWishList(e, item)}
+                                >
+                                  ADD TO WISHLIST
+                                </button>
+                              ) : (
+                                <Link to="/Login">
+                                  <button className="bt-wishlist">
+                                    {" "}
+                                    ADD TO WISHLIST
+                                  </button>
+                                </Link>
+                              )}
+                            </div>
                           </div>
-
-                      </ResultCard.Description>
-                    </ResultCard>
-                  ))}
-                </ReactiveList.ResultCardsWrapper>
-              )}
-            />
+                        </ResultCard.Description>
+                      </ResultCard>
+                    ))}
+                  </ReactiveList.ResultCardsWrapper>
+                )}
+              />
+            </div>
           </div>
-        </div>
-        <div> {console.log(this.state.isLogin)}</div>
-      </ReactiveBase>
-      <div> {console.log(this.state.toastList)}</div>
+          <div> {console.log(this.state.isLogin)}</div>
+        </ReactiveBase>
+        <div> {console.log(this.state.toastList)}</div>
 
-      <Toast
-        toastList={this.state.toastList}
-        position="bottom-right"
-        autoDelete={true}
-      />
-    </div>
+        <Toast
+          toastList={this.state.toastList}
+          position="bottom-right"
+          autoDelete={true}
+        />
+      </div>
     );
   }
 }

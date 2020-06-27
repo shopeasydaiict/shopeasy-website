@@ -94,7 +94,7 @@ class Wishlist extends Component {
           <div className="right">
             <h3>{this.state.user_email}</h3>
             <Link to="/">
-              <button onClick={this.logout} className="bt-login">
+              <button onClick={this.logout} className="top-button">
                 LOGOUT
               </button>
             </Link>

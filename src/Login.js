@@ -172,6 +172,7 @@ class Login extends Component {
           ></img>
         </Link>
         <form className="form-container">
+          <h1>Log into your account</h1>
           <h2 className="email-lable">Email address</h2>
           <input
             className="email-box"

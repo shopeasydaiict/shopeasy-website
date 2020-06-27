@@ -128,7 +128,7 @@ class Contact extends Component {
 
         <div className="crest">
           <div className="cform-container">
-            <h1 classname="contact-h1">Drop us a line</h1>
+            <h1 classname="contact-h1">Drop us a line.</h1>
             <form id="contact-us-form" onSubmit={this.sendtofire}>
               <label for="name">Name</label>
               <input
@@ -157,7 +157,7 @@ class Contact extends Component {
                 name="query"
                 id="query"
                 cols="45"
-                rows="10"
+                rows="8"
                 placeholder="Enter Your Query Here"
                 onChange={this.handleChange}
                 value={this.state.query}

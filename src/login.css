@@ -123,25 +123,26 @@
     display: grid;
     grid-template-columns: 120% 0;
     grid-template-areas: "logo form";
-    width: 70%;
-    margin: -15em -0 0 -8em;
+    width: 60%;
+    margin: -15em -0 0 -7em;
   }
   .llogo {
     grid-column: 1 / 1;    
-    margin: 8em 0 0 8em;
+    margin: 8em 0 0 33%;
     width: 150px;
   }
   .form-container {
     grid-column: 1 / 1;
+    margin-top: 2em;
     width: 100%;
   }
   .bt-signup {
-    margin: 2em 1em 0;
+    margin: 2em 0em 0;
     display: block;
     width: 100%;
   }
   .bt-login {
-    margin: 2em 1em 0;
+    margin: 2em 0em 0;
     width: 100%;
   }
 }

@@ -13,15 +13,13 @@
   letter-spacing: 0.05rem;
 }
 
-.logo {
-  margin-left: 16px;
-  float: left;
-}
+
 
 .datasearch {
   margin-left: auto;
   margin-right: auto;
 }
+
 
 .datasearch .searchbox {
   min-width: 400px;
@@ -37,10 +35,7 @@
   margin-left: 5%;
 }
 
-.display {
-  display: flex;
-  margin-top: 60px;
-}
+
 
 .leftSidebar > div {
   margin: 40px 0;
@@ -53,6 +48,15 @@
 }
 
 @media all and (min-width: 600px){
+  .display {
+    display: flex;
+    margin-top: 60px;
+  }
+
+  .logo {
+    margin-left: 16px;
+    float: left;
+  }
 
   .leftSidebar {
     width: 320px;
@@ -76,12 +80,62 @@
 @media all and (max-width: 600px) {
   .display {
     display: flex;
-
+    margin-top: 80px;
   }
-  .leftSidebar {
 
+  .leftSidebar {
     display:none;
     width: 0%;
+  }
+
+  .bt-mobile {
+    border-radius: 0.5em;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    padding: 0.5em;
+    background-color: #febd69;
+    font-weight: bold;
+  }
+
+  .logo {
+    margin-bottom: 2%;
+  }
+
+  .navbar-mobile {
+    margin-left:2vw;
+    display: inline;
+  }
+
+  .navbar-mobile-column {
+    display: flex;
+    width: calc(100%);
+    margin-bottom: 0.1vh;
+  }
+
+  .navbar-mobile-buttons {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    float: right;
+  }
+
+  .logo-img-mobile {
+    width: 10vw;
+    margin: 2vh;
+  }
+
+  .navbar-mobile .datasearch .mobilebox {
+    width: 95vw;
+    border-radius: 25px;
+    /* padding: 5px 16px 5px 30px; */
+    color: black;
+  }
+
+  .navbar {
+    height: fit-content;
+    padding-bottom: 1vh;
+    margin-bottom: 1vh;
   }
   .mainBar {
     width: 100%;

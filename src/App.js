@@ -128,7 +128,7 @@ class App extends Component {
           product_url: item.url,
         }).then(function() {
           console.log("Document successfully written!");
-        },this.showToast("Item successfully added to cart","success"))
+        },this.showToast("Item successfully added to wishlist","success"))
         .catch(function(error) {
             console.error("Error writing document: ", error);
         });
@@ -145,24 +145,51 @@ class App extends Component {
          >
         <div className="navbar">
 
-          <MediaQuery maxWidth={1224}>
-          <DataSearch
-            className="datasearch"
-            componentId="mainSearch"
-            dataField={["product_name", "product_name.search"]}
-            queryFormat="and"
-            placeholder="Search for a product or category"
-            innerClass={{
-              input: "searchbox",
-              list: "suggestionlist",
-            }}
-            autosuggest={false}
-            iconPosition="left"
-            filterLabel="search"
-          />
+          <MediaQuery maxWidth={600}>
+           <div className="navbar-mobile">
+             <div className="navbar-mobile-column">
+              <img className ="logo-img-mobile" src={require("./resources/shopeasy_logo_xs.png")} alt="Shopeasy"/>
+              <div className="navbar-mobile-buttons">
+                {this.state.user ? (
+                    <Link to="/Wishlist">
+                      <button className="bt-mobile home-login">WISHLIST</button>
+                    </Link>
+                  ) : null}
+
+                  {this.state.user ? (
+                    <button className="bt-mobile home-login" onClick={this.logout}>
+                      LOGOUT
+                    </button>
+                  ) : (
+                    <Link to="/Login">
+                      <button className="bt-mobile home-login">LOGIN / SIGNUP</button>
+                    </Link>
+                  )}
+                  <Link to="Contact">
+                    <button className="bt-mobile home-login">CONTACT US</button>
+                  </Link>
+                </div>
+            </div>
+
+            <DataSearch
+                className="datasearch"
+                componentId="mainSearch"
+                dataField={["product_name", "product_name.search"]}
+                queryFormat="and"
+                placeholder="Search for a product"
+                innerClass={{
+                  input: "mobilebox",
+                  list: "suggestionlist",
+                }}
+                autosuggest={false}
+                iconPosition="left"
+                filterLabel="search"
+              />
+          </div>
+
           </MediaQuery>
-          
-          <MediaQuery minDeviceWidth={1224}>
+
+          <MediaQuery minDeviceWidth={600}>
           <div className="logo">SHOPEASY DAIICT </div>
           <DataSearch
             className="datasearch"

@@ -1,4 +1,5 @@
 import React, { Component, useState } from "react";
+import MediaQuery from 'react-responsive'
 import {
   ReactiveBase,
   DataSearch,
@@ -143,12 +144,30 @@ class App extends Component {
             credentials="85Ptps7rc:5a1b8ef2-9b83-4195-bfcf-b7a5052ef728"
          >
         <div className="navbar">
+
+          <MediaQuery maxWidth={1224}>
+          <DataSearch
+            className="datasearch"
+            componentId="mainSearch"
+            dataField={["product_name", "product_name.search"]}
+            queryFormat="and"
+            placeholder="Search for a product or category"
+            innerClass={{
+              input: "searchbox",
+              list: "suggestionlist",
+            }}
+            autosuggest={false}
+            iconPosition="left"
+            filterLabel="search"
+          />
+          </MediaQuery>
+          
+          <MediaQuery minDeviceWidth={1224}>
           <div className="logo">SHOPEASY DAIICT </div>
           <DataSearch
             className="datasearch"
             componentId="mainSearch"
             dataField={["product_name", "product_name.search"]}
-            fieldWeights={[5, 1, 3, 1]}
             queryFormat="and"
             placeholder="Search for a product or category"
             innerClass={{
@@ -179,6 +198,10 @@ class App extends Component {
               <button className="bt-login home-login">CONTACT US</button>
             </Link>
           </div>
+
+          </MediaQuery>
+
+
         </div>
         <div className={"display"}>
           <div className={"leftSidebar"}>
@@ -249,24 +272,24 @@ class App extends Component {
 
                       <ResultCard.Description>
                         <div className="flex column justify-space-between">
-                          <div>
                             <div className="ratings-list flex align-center">
                               <span className="price">Rs {item.price}</span>
                             </div>
-                          </div>
                           <span className="source">Website: {item.source}</span>
+                          <div className="add-to-wishlist">
                           {this.state.user ? (
                             <button
-                              className="bt-login home-login"
-                              onClick={(e) => this.addToWishList(e, item)}
-                            >
-                              + WISHLIST
+                              className="bt-wishlist"
+                              onClick={(e) => this.addToWishList(e, item)}>
+                              ADD TO WISHLIST
                             </button>
                           ) : <Link to="/Login">
-                            <button className="bt-login home-login">+ WISHLIST</button>
+                            <button className="bt-wishlist"> ADD TO WISHLIST</button>
                             </Link>
                             }
                         </div>
+                          </div>
+
                       </ResultCard.Description>
                     </ResultCard>
                   ))}

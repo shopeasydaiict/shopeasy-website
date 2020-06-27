@@ -42,41 +42,57 @@
   margin-top: 60px;
 }
 
-.leftSidebar {
-  width: 320px;
-  height: 100%;
-  padding: 20px 20px;
-  position: fixed;
-  left: 0;
-  right: 0;
-  overflow-y: scroll;
-  border-right: 1px solid #f0f0f0;
-}
-
 .leftSidebar > div {
   margin: 40px 0;
 }
 
-@media all and (max-width: 768px) {
+.product-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media all and (min-width: 600px){
+
   .leftSidebar {
-    position: static;
+    width: 320px;
+    height: 100%;
+    padding: 20px 20px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    overflow-y: scroll;
+    border-right: 1px solid #f0f0f0;
+  }
+  .mainBar {
+    width: calc(100% - 320px);
+    position: relative;
+    left: 320px;
+    padding: 0px 30px;
+    background-color: #fefefe;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .display {
+    display: flex;
+
+  }
+  .leftSidebar {
+
+    display:none;
+    width: 0%;
+  }
+  .mainBar {
     width: 100%;
-    height: auto;
-    border-right: 0;
-    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    padding: 0px 30px;
+    background-color: #fefefe;
   }
 }
 
 .author .author-list {
   max-height: 150px;
-}
-
-.mainBar {
-  width: calc(100% - 320px);
-  position: relative;
-  left: 320px;
-  padding: 0px 30px;
-  background-color: #fefefe;
 }
 
 .result-data .result-image {
@@ -92,6 +108,25 @@
 
 .home-login {
   margin-right: 0.5em;
+  width: max-content;
+}
+
+.source {
+  margin-bottom: 10em;
+}
+
+.add-to-wishlist {
+  margin-top: 2%;
+}
+
+.bt-wishlist {
+  border-radius: 0.5em;
+  cursor: pointer;
+  border: none;
+  padding: 0.8em;
+  width: 100%;
+  background-color: #febd69;
+  font-weight: bold;
 }
 
 .wish-list {

@@ -90,26 +90,9 @@
 }
 
 @media (min-width: 1000px) {
-  .lbody {
-
-  }
-  .form-container h1{
-    /*font-size: 1.8em;*/
-  }
   .llogo {
     width: 10%;
     align-self: flex-start;
     min-width: 150px;
-  }
-  ,llogo img{
-  }
-  .form-container {
-    /*width: max-content;*/
-  }
-  .btt-signup {
-
-  }
-  .btt-login {
-
   }
 }

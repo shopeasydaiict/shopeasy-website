@@ -94,7 +94,7 @@ class Wishlist extends Component {
           <div className="right">
             <h3>{this.state.user_email}</h3>
             <Link to="/">
-              <button onClick={this.logout} className="top-button">
+              <button onClick={this.logout} className="bt-login">
                 LOGOUT
               </button>
             </Link>
@@ -114,8 +114,11 @@ class Wishlist extends Component {
                 </div>
                 <div className="details">
                   <h2>{data.name}</h2>
-                  <p>Price : Rs. {data.price} </p>
-                  <p>Website : {data.source}</p>
+                  <p className="price">Price : Rs. {data.price} </p>
+                  <p className="source-website">
+                    <span>Website : </span>
+                    <span>{data.source}</span>
+                  </p>
                 </div>
               </a>
               <button>

@@ -46,7 +46,7 @@
   margin-left: 5%;
 }
 .navbar-buttons {
-  /* border-radius: 0.4em; */
+  border-radius: 0.5em;
   cursor: pointer;
   border: none;
   width: fit-content;
@@ -203,7 +203,9 @@
 .source {
   margin-bottom: 10em;
 }
-
+.source-website {
+  text-transform: capitalize;
+}
 .add-to-wishlist {
   margin-top: 5%;
   /* max-height: 2%; */

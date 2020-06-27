@@ -34,6 +34,42 @@
 .top button:hover {
   background-color: #88c1ff;
 }
+.left {
+  display: flex;
+}
+.left a {
+  padding-right: 2em;
+}
+.left h1 {
+  padding-top: 0.5em;
+}
+.right {
+  display: flex;
+  align-items: center;
+}
+.list {
+  padding: 0.3em;
+  background-color: #d4d4d4;
+  margin: 0 8em;
+  border-radius: 20px;
+}
+.product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  margin: 1em;
+  background-color: white;
+  border-radius: 20px;
+}
+.product a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+
+  width: 100%;
+}
 .product-con {
   display: flex;
   justify-content: space-evenly;
@@ -48,50 +84,6 @@
 .details {
   text-align: left;
   padding: 1em;
-}
-.right {
-  display: flex;
-  align-items: center;
-}
-.product button:hover {
-  background-color: #888888;
-}
-.close {
-  width: 60px;
-}
-@media (max-width: 1000px) {
-  .list {
-    background-color: #d4d4d4;
-    margin: 1em 2em 2em 2em;
-  }
-  .product a {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1em;
-  }
-  .product button {
-    margin: 0;
-  }
-  .product {
-    flex-direction: column;
-  }
-  .wishlist-body {
-    padding: 1em;
-  }
-  .right {
-    flex-direction: column;
-  }
-  .left {
-    display: block;
-  }
-  .left h1 {
-    margin: 1em 0 0 0;
-  }
-  .top {
-    width: 100%;
-    padding: 1em 2em 1em 0;
-    align-items: flex-start;
-  }
 }
 .product button {
   margin-right: 2em;

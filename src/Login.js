@@ -168,7 +168,6 @@ class Login extends Component {
             border=""
             alt="ShopEasy"
             src={require("./resources/shopeasy_logo.png")}
-            style={{width:"100%"}}
           ></img>
         </Link>
         <form className="form-container">

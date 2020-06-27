@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./Login";
 import Contact from "./Contact";
 import Wishlist from "./Wishlist";

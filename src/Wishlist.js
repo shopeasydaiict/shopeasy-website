@@ -3,6 +3,16 @@ import fire from "./config/fire";
 import "./wishlist.css";
 import { Link } from "react-router-dom";
 import App from "./App";
+import "./App.css";
+import { css } from "emotion";
+import {
+  ReactiveBase,
+  ResultCard,
+  ReactiveList,
+} from "@appbaseio/reactivesearch";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Card, Button } from 'react-bootstrap';
+
 class Wishlist extends Component {
   constructor(props) {
     super(props);
@@ -100,38 +110,60 @@ class Wishlist extends Component {
             </Link>
           </div>
         </div>
-        <div className="list">
-          {this.state.wishlistData.map((data) => (
-            <div className="product">
-              <div> {console.log(data)}</div>
-              <a href={data.product_url}>
-                <div className="product-con">
-                  <img
-                    src={data.image_url}
-                    alt="Image Unavailable"
-                    className="product-image"
-                  />
-                </div>
-                <div className="details">
-                  <h2>{data.name}</h2>
-                  <p>Price : Rs. {data.price} </p>
-                  <p>Website : {data.source}</p>
-                </div>
-              </a>
-              <button>
-                <a rel="stylesheet" href="#">
-                  <img
-                    src={require("./resources/cross.png")}
-                    alt="Remove item"
-                    className="close"
-                    onClick={(e) => this.removeFromWishlist(e, data.id)}
-                  />
-                </a>
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
+        <ReactiveBase
+            app="shopeasy"
+            credentials="85Ptps7rc:5a1b8ef2-9b83-4195-bfcf-b7a5052ef728"
+         >
+            <ReactiveList
+              componentId="SearchResult"
+              size={6}
+              pagination
+              innerClass={{
+                poweredBy: css({
+                  display: "none !important",
+                }),
+              }}
+              render={({ data }) => (
+                <ReactiveList.ResultCardsWrapper>
+                  {this.state.wishlistData.map((data) => (
+                    <ResultCard key={data.id} href={data.product_url}>
+                    <ResultCard.Image src={data.image_url} />
+                    <ResultCard.Title>
+                      <div
+                        className="product-title"
+                        dangerouslySetInnerHTML={{
+                          __html: data.name,
+                        }}
+                      />
+                    </ResultCard.Title>
+
+                    <ResultCard.Description>
+                      <div className="flex column justify-space-between">
+                          <div className="ratings-list flex align-center">
+                            <span className="price">Rs {data.price}</span>
+                          </div>
+                        <span className="source">Website: {data.source}</span>
+                        <button
+                              className="bt-wishlist"
+                              onClick={(e) => this.removeFromWishlist(e, data.idd)}>
+                              Rem WISHLIST
+                            </button>
+
+                        </div>
+
+                    </ResultCard.Description>
+                    </ResultCard>
+                 ))};
+
+                </ReactiveList.ResultCardsWrapper>
+              )}
+            />
+         </ReactiveBase>
+
+
+
+          </div>
+
     );
   }
 }

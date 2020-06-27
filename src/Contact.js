@@ -141,7 +141,7 @@ class Contact extends Component {
                 value={this.state.name}
                 required
               />
-              <label for="email">Email</label>
+              <label for="email">Email address</label>
               <input
                 type="email"
                 name="email"
@@ -164,7 +164,7 @@ class Contact extends Component {
                 required
               ></textarea>
 
-              <input type="submit" value="Submit" />
+              <input type="submit" value="SUBMIT" />
             </form>
           </div>
           <img src={require("./resources/test.png")} alt="" class="cill"></img>

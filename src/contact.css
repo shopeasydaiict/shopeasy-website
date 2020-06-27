@@ -3,7 +3,7 @@
 .contact-body {
   font-family: "Roboto", sans-serif;
   margin: 0;
-  background-color: #232f3e;
+  background-color: #0b6aff;
   color: white;
   padding: 2em;
   height: 100vh;
@@ -12,12 +12,12 @@
   display: flex;
   align-items: center;
 }
-.ctop h3{
+.ctop h3 {
   margin-left: 2em;
   color: white;
   text-decoration: none;
 }
-.clogo{
+.clogo {
   width: 120px;
   height: 120px;
 }
@@ -104,13 +104,13 @@ textarea {
     padding: 0;
     width: 0;
   }
-  .ctop{
+  .ctop {
     display: block;
   }
-  .ctop h3{
+  .ctop h3 {
     margin-left: 3em;
   }
-  .clogo{
+  .clogo {
     margin: 1em 0 1em 8em;
   }
   .cform-container {
@@ -124,7 +124,7 @@ textarea {
   .cform-container form input {
     width: 90%;
   }
-  textarea{
+  textarea {
     width: 90%;
   }
 }

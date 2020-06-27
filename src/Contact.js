@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import fire from "./config/fire";
 import "./contact.css";
 import { Link } from "react-router-dom";
-import Toast from "./Toast"
-import checkIcon from './resources/check.svg';
-import errorIcon from './resources/error.svg';
-import infoIcon from './resources/info.svg';
-import warningIcon from './resources/warning.svg';
-
+import Toast from "./Toast";
+import checkIcon from "./resources/check.svg";
+import errorIcon from "./resources/error.svg";
+import infoIcon from "./resources/info.svg";
+import warningIcon from "./resources/warning.svg";
 
 class Contact extends Component {
   constructor(props) {
@@ -18,64 +17,63 @@ class Contact extends Component {
       email: "",
       name: "",
       query: "",
-      toastList : []
+      toastList: [],
     };
   }
 
+  showToast(description, type) {
+    const id = Math.floor(Math.random() * 101 + 1);
+    var toastProperties = null;
 
-  showToast(description,type) {
-    const id = Math.floor((Math.random() * 101) + 1);
-    var toastProperties = null
+    var toastListTemp = this.state.toastList;
 
-    var toastListTemp = this.state.toastList
-
-    switch(type) {
-      case 'success':
+    switch (type) {
+      case "success":
         toastProperties = {
           id,
-          title: 'Success',
+          title: "Success",
           description: description,
-          backgroundColor: '#5cb85c',
-          icon: checkIcon
-        }
+          backgroundColor: "#5cb85c",
+          icon: checkIcon,
+        };
         break;
-      case 'danger':
+      case "danger":
         toastProperties = {
           id,
-          title: 'Danger',
+          title: "Danger",
           description: description,
-          backgroundColor: '#d9534f',
-          icon: errorIcon
-        }
+          backgroundColor: "#d9534f",
+          icon: errorIcon,
+        };
         break;
-      case 'info':
+      case "info":
         toastProperties = {
           id,
-          title: 'Info',
+          title: "Info",
           description: description,
-          backgroundColor: '#5bc0de',
-          icon: infoIcon
-        }
+          backgroundColor: "#5bc0de",
+          icon: infoIcon,
+        };
         break;
-      case 'warning':
+      case "warning":
         toastProperties = {
           id,
-          title: 'Warning',
+          title: "Warning",
           description: description,
-          backgroundColor: '#f0ad4e',
-          icon: warningIcon
-        }
+          backgroundColor: "#f0ad4e",
+          icon: warningIcon,
+        };
         break;
 
-        default:
-          this.setState({
-            toastList : []
-          });
+      default:
+        this.setState({
+          toastList: [],
+        });
     }
-    toastListTemp.push(toastProperties)
+    toastListTemp.push(toastProperties);
 
     this.setState({
-      toastList : toastListTemp
+      toastList: toastListTemp,
     });
   }
 
@@ -94,7 +92,7 @@ class Contact extends Component {
       name: "",
       query: "",
     });
-    this.showToast("Thank You for submitting!","success");
+    this.showToast("Thank You for submitting!", "success");
   }
   /*
   fire
@@ -121,9 +119,7 @@ class Contact extends Component {
               src={require("./resources/shopeasy_logo.png")}
             ></img>
           </Link>
-          <Link to="http://sengroup5daiict@gmail.com/">
-            <h3>sengroup5daiict@gmail.com</h3>
-          </Link>
+          <h3>sengroup5daiict@gmail.com</h3>
         </div>
 
         <div className="crest">
@@ -170,10 +166,10 @@ class Contact extends Component {
           <img src={require("./resources/test.png")} alt="" class="cill"></img>
         </div>
         <Toast
-        toastList={this.state.toastList}
-        position="bottom-right"
-        autoDelete={true}
-      />
+          toastList={this.state.toastList}
+          position="bottom-right"
+          autoDelete={true}
+        />
       </div>
     );
   }

@@ -19,10 +19,12 @@
     width: 8em;
     border: none;
     border-radius: .5em;
+    color: black;
     background-color: #FEBD69;
     margin-left: 3em;
     cursor: pointer;
 }
+
 .top button:hover{
     background-color: #e29229;
 }
@@ -42,15 +44,16 @@
     padding: .3em;
     background-color: #d4d4d4;
     margin: 0 8em;
-    border-radius: .3em;
+    border-radius: 20px;
 }
 .product{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1em;
-    margin-bottom: 1em;
+    padding: 0.5em;
+    margin: 1em;
     background-color: white;
+    border-radius: 20px;
 }
 .product a{
     display: flex;
@@ -78,7 +81,7 @@
 .product button{
     margin-right: 2em;
     border: none;
-    background-color: #d4d4d4;
+    /*background-color: #d4d4d4;*/
     border-radius: .3em;
 }
 .product button:hover{

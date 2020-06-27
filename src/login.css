@@ -2,81 +2,120 @@
 
 .lbody {
   font-family: "Roboto", sans-serif;
-  background-color: #232f3e;
+  /*background-color: #232f3e;
+  background-color: #202027;
+  background-color: #1e2022;
+  background-color: #232931;
+  background-color: #1a3c40;
+  background-color: #08081a;*/
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
   display: grid;
-  grid-template-columns: repeat(2, 50%);
+  grid-template-columns: 30% 70%;
   grid-template-areas: "logo form";
   align-content: center;
   padding: 10em 10em 30em;
   margin: 0;
 }
-
+.form-container{
+  /*background-color: #202027;
+  background-color: #52616b;
+  background-color: #393e46;
+  background-color: #144d53;
+  background-color: #f14a29;*/
+  background-color: white;
+  border-radius: 1rem;
+  width: 50%;
+  margin-top: 5em;
+  height: 90%;
+  padding: 2em 1.5em 0 1.5em;
+  filter: drop-shadow(0 0 30px #c4c4c4);
+}
+.bt-login {
+  border-radius: 5rem;
+  cursor: pointer;
+  border: none;
+  padding: 1em;
+  width: 50%;
+  margin-left: 24%;
+  margin-top: 3em;
+  color: white;
+  display: block;
+  /*background-color: #febd69;
+  background-color: #f0f5f9;
+  background-color: #4ecca3;
+  background-color: #307672;
+  background-color: #08081a;*/
+  background-color: #007bff;
+  font-weight: bold;
+}
+.bt-signup {
+  border-radius: 5rem;
+  cursor: pointer;
+  border: none;
+  padding: 1em;
+  width: 50%;
+  margin: 2em 0 0 24%;
+  color: white;
+  /*background-color: #febd69;
+  background-color: #f0f5f9;
+  background-color: #4ecca3;
+  background-color: #307672;
+  background-color: #08081a;*/
+  background-color: #007bff;
+  font-weight: bold;
+}
 .email-lable {
   margin: 1em 0;
-  color: white;
+  /*color: white;*/
   font-size: 1em;
 }
 
 .email-box {
   border: none;
-  border-radius: 0.5em;
+  border-radius: 5rem;
   display: block;
   padding: 0.8em;
-  width: 100%;
+  width: 95%;
   margin: 0 0 3em;
-  background-color: #c4c4c4;
+  background-color: #e9e9e9;
 }
 .email-box:focus {
   background-color: white;
 }
 .pass-box {
   border: none;
-  border-radius: 0.5em;
+  border-radius: 5rem;
   display: block;
   padding: 0.8em;
-  width: 100%;
+  width: 95%;
   margin: 0 0 3em;
-  background-color: #c4c4c4;
+  background-color: #e9e9e9;
 }
 .pass-box:focus {
   background-color: white;
 }
 .pass-lable {
   margin: 1em 0;
-  color: white;
+  /*color: white;*/
   font-size: 1em;
 }
 
-.bt-login {
-  border-radius: 0.5em;
-  cursor: pointer;
-  border: none;
-  padding: 0.8em;
-  width: 10em;
-  background-color: #febd69;
-  font-weight: bold;
-}
+
 
 .bt-login:hover {
-  background-color: #ce8322;
+  background-color: #005bbd;
 }
-.bt-signup {
-  border-radius: 0.5em;
-  cursor: pointer;
-  border: none;
-  padding: 0.8em;
-  width: 10em;
-  margin: 2em;
-  background-color: #febd69;
-  font-weight: bold;
-}
+
 .bt-signup:hover {
-  background-color: #ce8322;
+  background-color: #005bbd;
 }
 
 .llogo {
-  width: 200px;
-  margin: 5em;
+  width: 150px;
+  /*margin: 7em 5em 5em 5em;*/
+  margin-top: -7em ;
+  margin-left: -7em;
 }
 
 @media (max-width: 1000px) {

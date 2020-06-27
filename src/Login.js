@@ -172,23 +172,23 @@ class Login extends Component {
           ></img>
         </Link>
         <form className="form-container">
-          <h2 className="email-lable">E-MAIL:</h2>
+          <h2 className="email-lable">Email address</h2>
           <input
             className="email-box"
             type="email"
             id="email"
             name="email"
-            placeholder="Enter Email Address"
+            placeholder="Email address"
             onChange={this.handleChange}
             value={this.state.email}
           />
-          <h2 className="pass-lable">PASSWORD:</h2>
+          <h2 className="pass-lable">Password</h2>
           <input
             className="pass-box"
             type="password"
             id="password"
             name="password"
-            placeholder="Enter password"
+            placeholder="Password"
             onChange={this.handleChange}
             value={this.state.password}
           />

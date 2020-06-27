@@ -7,7 +7,7 @@
   background: #007bff;
   height: 100vh;
   background: linear-gradient(to right, #0062E6, #33AEFF);
-  padding: 1em 2em 7em 2em;
+  padding: 1em 2em 10em 2em;
 }
 .ctop {
   display: flex;
@@ -30,8 +30,8 @@
   margin-bottom: 5em;
 }
 .cform-container h1 {
-  text-align: center;
   margin: 0 0 .5em 0;
+  font-weight: 400;
 }
 label {
   margin: 1em;
@@ -122,9 +122,10 @@ textarea {
     flex-direction: column;
   }
   .ctop h3{
-    /*margin-left: 15%;*/
     margin-top: 0;
     margin-bottom: .5em;
+    font-weight: 400;
+    margin-left: 0;
   }
   .clogo{
     /*margin: .5em 0 .5em 35%;*/

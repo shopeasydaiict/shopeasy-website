@@ -21,18 +21,18 @@
     width: 8em;
     border: none;
     border-radius: .5em;
-    color: white;
-    font-weight: bold;
-    padding: .5em;
-    font-size: 1.3em;
+    color: #0055af;
+    font-weight: 700;
+    padding: .4em;
+    font-size: 1em;
     /*background-color: #FEBD69;*/
-    background-color: #007bff;
+    background-color: white;
     margin-left: 3em;
     cursor: pointer;
 }
 
 .top button:hover{
-    background-color: #0067d4;
+    background-color: #88c1ff;
 }
 .left{
     display: flex;

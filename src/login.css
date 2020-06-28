@@ -15,7 +15,7 @@
 
 .btn-google {
   background-color: #ea4335;
-  border-radius: 0.5em;
+  border-radius: 5em;
   cursor: pointer;
   border: none;
   padding: 1em;
@@ -44,7 +44,7 @@
   margin: 0 0 0.5em;
 }
 .btt-login {
-  border-radius: 0.5em;
+  border-radius: 5em;
   cursor: pointer;
   border: none;
   padding: 1em;
@@ -57,7 +57,7 @@
 }
 
 .btt-signup {
-  border-radius: 0.5em;
+  border-radius: 5em;
   cursor: pointer;
   border: none;
   padding: 1em;
@@ -74,7 +74,7 @@
 
 .email-box {
   border: none;
-  border-radius: 0.5em;
+  border-radius: 5em;
   display: block;
   padding: 1em;
   width: 93%;
@@ -87,7 +87,7 @@
 }
 .pass-box {
   border: none;
-  border-radius: 0.5em;
+  border-radius: 5em;
   display: block;
   padding: 1em;
   width: 93%;

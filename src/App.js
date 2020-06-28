@@ -146,8 +146,8 @@ class App extends Component {
           app="shopeasy-sen"
           credentials="85Ptps7rc:5a1b8ef2-9b83-4195-bfcf-b7a5052ef728"
         >
-          <div className="navbar">
-            <MediaQuery maxWidth={600}>
+
+            <MediaQuery maxWidth={600} className="media-query">
               <div className="navbar-mobile">
                 <div className="navbar-mobile-column">
                   <img
@@ -186,6 +186,7 @@ class App extends Component {
                   </div>
                 </div>
 
+                <div className="search-bar">
                 <DataSearch
                   className="datasearch"
                   componentId="mainSearch"
@@ -200,10 +201,14 @@ class App extends Component {
                   iconPosition="left"
                   filterLabel="search"
                 />
+                </div>
+
+
               </div>
             </MediaQuery>
 
             <MediaQuery minDeviceWidth={600}>
+            <div className="navbar">
               <img
                 src={require("./resources/shopeasy_logo.png")}
                 width="2%"
@@ -244,8 +249,9 @@ class App extends Component {
               <Link to="Contact">
                 <button className="navbar-buttons">CONTACT US</button>
               </Link>
+              </div>
             </MediaQuery>
-          </div>
+
           <div className={"display"}>
             <div className={"leftSidebar"}>
               <RangeSlider
@@ -279,7 +285,9 @@ class App extends Component {
               />
             </div>
             <div className={"mainBar"}>
+            <MediaQuery minDeviceWidth={600}>
               <SelectedFilters />
+            </MediaQuery>
               <ReactiveList
                 componentId="SearchResult"
                 dataField={["product_name", "product_name.search"]}

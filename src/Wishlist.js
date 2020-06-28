@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import fire from "./config/fire";
+import firebase from "./config/fire";
 import "./wishlist.css";
 import { Link } from "react-router-dom";
 import App from "./App";
@@ -19,17 +19,17 @@ class Wishlist extends Component {
   }
 
   logout() {
-    fire.auth().signOut();
+    firebase.auth().signOut();
   }
 
   authLister() {
-    fire.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user_id: user.uid, user_email: user.email });
         var data = [];
         var uid;
 
-        fire
+        firebase
           .firestore()
           .collection("users")
           .doc(this.state.user_id)
@@ -58,7 +58,7 @@ class Wishlist extends Component {
 
   removeFromWishlist(e, doc_id) {
     e.preventDefault();
-    fire
+    firebase
       .firestore()
       .collection("users")
       .doc(this.state.user_id)

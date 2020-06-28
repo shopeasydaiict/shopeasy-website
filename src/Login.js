@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import "./login.css";
-import fire from "./config/fire";
+import firebase from "./config/fire";
 import { Link } from "react-router-dom";
 import Toast from "./Toast"
 import checkIcon from './resources/check.svg';
 import errorIcon from './resources/error.svg';
 import infoIcon from './resources/info.svg';
 import warningIcon from './resources/warning.svg';
+import GoogleLogin from 'react-google-login';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Login extends Component {
 
@@ -15,6 +17,8 @@ class Login extends Component {
     this.login = this.login.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.signup = this.signup.bind(this);
+    this.signInWithGoogle = this.signInWithGoogle.bind(this);
+    // this.redirectToHome = this.redirectToHome(this);
     this.state = {
       email: "",
       password: "",
@@ -119,8 +123,7 @@ class Login extends Component {
 
   login(e) {
     if (e) e.preventDefault();
-
-    fire
+    firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
@@ -133,6 +136,30 @@ class Login extends Component {
       });
   }
 
+  signInWithGoogle(e){
+    e.preventDefault();
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+    .auth()
+    .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(() => { 
+      firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(result => {
+        console.log(result)
+
+        // Auth.setLoggedIn(true)
+        this.props.history.push("/");
+      })
+      .catch(e => alert(e.message))
+    })
+  }
+
+  redirectToHome(response) {
+    this.props.history.push("/")
+  }
+
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
@@ -143,7 +170,7 @@ class Login extends Component {
     e.preventDefault();
     var validate = this.validatePassword(this.state.password);
     if (validate === true) {
-      fire
+      firebase
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then((u) => {
@@ -193,6 +220,22 @@ class Login extends Component {
             onChange={this.handleChange}
             value={this.state.password}
           />
+          <button class="btn btn-lg btn-google btn-block text-uppercase"  onClick={this.signInWithGoogle}>SIGN IN WITH GOOGLE</button>
+          {/* <GoogleLogin
+            clientId="396721888537-qlbuku6l8dte7iv7rhb9d4licctgvfem.apps.googleusercontent.com"
+            buttonText="Sign in with Google"
+            className="btn-google"
+            theme="dark"
+            onSuccess={this.redirectToHome}
+            // onFailure={(resp) => this.showToast("Some error occured","danger")}
+          /> */}
+        {/* <div class="google-btn" onClick={() => this.signInWithGoogle()}>
+          <div class="google-icon-wrapper">
+            <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+          </div>
+          <p class="btn-text"><b>Sign in with google</b></p>
+        </div> */}
+
           <button onClick={this.login} className="btt-login">
             LOGIN
           </button>

@@ -7,7 +7,7 @@ var firebaseConfig = {
   storageBucket: "shopeasy-48ef1.appspot.com",
   messagingSenderId: "396721888537",
   appId: "1:396721888537:web:d4f12114ac4825b5b83988",
-  measurementId: "G-HFZ88WGBG9",
+  measurementId: "G-HFZ88WGBG9"
 };
-const fire = firebase.initializeApp(firebaseConfig);
-export default fire;
+firebase.initializeApp(firebaseConfig);
+export default firebase;
